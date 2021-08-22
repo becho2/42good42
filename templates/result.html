@@ -4,46 +4,143 @@
     <meta charset="UTF-8">
     <title>결과페이지</title>
 
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
     <style>
-        .wrap {
-            margin: auto;
+
+        * {
+            font-family: 'Noto Sans', sans-serif;
+            text-align: center;
+        }
+
+        .main-box {
+            width: auto;
+            height: 50%;
+            padding-bottom: 30%;
+            margin: 0;
+            border: solid;
+            solid-color: gray;
+        }
+
+        .modal {
+            position: absolute;
+            top: 0;
+            left : 0;
+
+            width: 100%;
+            height: 100%;
+
+            display: none;
+
+            background-color: rgba(0, 0, 0, 0.4);;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal_body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            width: 400px;
+            height: 400px;
+
+            padding: 40px;
+
+            text-align: center;
+
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+            transform: translateX(-50%) translateY(-50%);
         }
 
         .img {
             text-align: center;
         }
     </style>
-
 </head>
 
-<!-- 참고한 사이트 : https://er5v0gyapw3.typeform.com/to/xTOETTpH  -->
-
 <body>
-<div>
-    <div class="wrap">
-        <div class="img">
-            <img src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
-            <h1 class="posting-box">
-                <strong>홍길동</strong>
-                <strong>님의</strong>
-                <br>
-                <strong> 분리 수고 레벨은 4</strong>
-                <br>
-                <br>
-                <span>👉 분리수고력 55% 👈</span>
-                <br>
-                <br>
-                <span>🗑 쓰레기의 분수를 잘 아는 수고 🗑 </span>
-                <br>
-                <strong>'자기 분리수거는 알고 살아야죠'</strong>
-                <br>
-                <br>
-                <span>--------------------------------------</span>
-                <br>
-            </h1>
+    <div>
+        <div class="main-box">
+            <div class="modal">
+                <div class="modal_body">Modal</div>
+            </div>
+            <button class="btn-open-popup">Modal 띄우기</button>
+
+            <div class="img">
+                <img src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
+                <h1 class="posting-box">
+                    <strong>홍길동</strong>
+                    <strong>님의</strong>
+                    <br>
+                    <strong> 분리 수고 레벨은 4</strong>
+                    <br>
+                    <br>
+                    <span>👉 분리수고력 55% 👈</span>
+                    <br>
+                    <br>
+                    <span>🗑 쓰레기의 분수를 잘 아는 수고 🗑 </span>
+                    <br>
+                    <strong>'자기 분리수거는 알고 살아야죠'</strong>
+                    <br>
+                    <br>
+                    <span>--------------------------------------</span>
+                    <br>
+                </h1>
+            </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            <!-- 코드 정리 필요 -->
+            <!-- 제이쿼리 사용 해야 할듯 -->
+            <!-- 모달 안에 버튼 만들어야 함 -->
 
-</div>
-</body>
+            <!-- 모달 생성 -->
+            modal.classList.toggle('show');
+            <!-- Body 스크롤 막기 -->
+            body.style.overflow = 'hidden';
+        });
+
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+        <!-- 모달창 띄우기 버튼 이벤트 리스너 -->
+        btnOpenPopup.addEventListener('click', () => {
+            modal.classList.toggle('show');
+
+            if (modal.classList.contains('show')) {
+                body.style.overflow = 'hidden';
+            }
+        });
+
+        <!-- 모달창 이벤트 리스너 -->
+        modal.addEventListener('click', (even) => {
+            if (event.target === modal) {
+                modal.classList.toggle('show');
+
+                if (!modal.classList.contains('show')) {
+                    body.style.overflow = 'auto';
+                }
+            }
+        });
+    </script>
+    </body>
 </html>
