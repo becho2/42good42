@@ -2,12 +2,20 @@ from flask import Flask, render_template, jsonify, request, flash, session
 from pymongo import MongoClient
 
 app = Flask(__name__)
+
+# Create dummy secrey key so we can use sessions
+app.config['SECRET_KEY'] = '123456790'
+
+# Set mongo db
 conn = MongoClient()
 db = conn.good42
+
+
 ## 메인 HTML 화면 보여주기
 # @app.route('/')
 # def index():
 #     return render_template('index.html')
+
 
 ## 메인 HTML 화면 보여주기
 @app.route('/')
@@ -35,6 +43,7 @@ def result():
 # 로그인 페이지 별도 개설로 인해, 링크 및 render_template 페이지 변경
 @app.route('/admin', methods=['GET', 'POST'])
 def member_login():
+    
     ids = ['은정','진회','형준','주은','나현']
     password = 'reallygood42'
     if request.method == 'GET':
@@ -55,12 +64,14 @@ def member_login():
                 return render_template('admin_login.html')
             elif pw == password:
                 session["logged_in"] = userid
-                return render_template('admin.html' , userid = userid)
+                return render_template('admin.html', userid = userid)
             else:
                 flash("비밀번호가 틀렸습니다.")
                 return render_template('admin_login.html')
 
 @app.route('/admin_quiz', methods=['POST'])
+def admin_quiz():
+    return None
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
