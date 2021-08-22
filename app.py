@@ -12,6 +12,11 @@ app = Flask(__name__)
 def main():
     return render_template('main.html')
 
+## 퀴즈페이지 HTML 화면 보여주기
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
+
 ## 결과페이지 HTML 화면 보여주기
 @app.route('/result')
 def result():
