@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gaegu', cursive;
+        }
+
+        .item-img {
+            width: 600px;
+            height: 300px;
+
+            background-image: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MjJfMTI5%2FMDAxNTkwMTM3MTM2ODUy.QcDIpQKCpBL5XOUcqlN5nvc3CoDyxC0iY4hEt1TLnDMg.atgYjYbRN9AW8C-MW3dObg4UzRRFp7xSRwp0fhDo294g.JPEG.cosmicgreenofficial%2FIMG_8589.jpg&type=a340");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .price {
+            font-size: 20px;
+        }
+
+        .item-desc {
+            width: 600px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item-desc > p {
+            font-size: 50px;
+        }
+
+        .item-desc .price {
+            font-weight: bold;
+        }
+
+        .item-order {
+            width: 600px;
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 250px;
+            height: 250px;
+            display: inline;
+            font-size: 200px;
+            text-align: center;
+        }
+
+        .wrap {
+            width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .btn-order > span {
+            width: 225px;
+            height: 100px;
+            line-height: 100px;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: cornflowerblue;
+
+        }
+
+        .btn-primary:hover, .btn-primary:focus {
+            border-color: #6fb03a;
+            background-color: #333333;
+            color: #FFF;
+        }
+
+        .btn-danger {
+
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+<div class="wrap">
+    <div class="item-img">
+    </div>
+    <div class="item-desc">
+        <h1>첫 번째 문제! &nbsp; <span class="price">음식물 쓰레기</span></h1>
+        <p>
+            요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
+        </p>
+
+    </div>
+    <div class="item-order">
+        <button type="button" onclick="order()" class="btn btn-primary btn-order"><span>O</span></button>
+        <button type="button" onclick="order()" class="btn btn-danger btn-order"><span>X</span></button>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+
