@@ -1,55 +1,6 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>결과페이지</title>
 
-    <style>
-        .wrap {
-            margin: auto;
-        }
-
-        .img {
-            text-align: center;
-        }
-    </style>
-
-</head>
-
-<!-- 참고한 사이트 : https://er5v0gyapw3.typeform.com/to/xTOETTpH  -->
-
-<body>
-<div>
-    <div class="wrap">
-        <div class="img">
-            <img src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
-            <h1 class="posting-box">
-                <strong>홍길동</strong>
-                <strong>님의</strong>
-                <br>
-                <strong> 분리 수고 레벨은 4</strong>
-                <br>
-                <br>
-                <span>👉 분리수고력 55% 👈</span>
-                <br>
-                <br>
-                <span>🗑 쓰레기의 분수를 잘 아는 수고 🗑 </span>
-                <br>
-                <strong>'자기 분리수거는 알고 살아야죠'</strong>
-                <br>
-                <br>
-                <span>--------------------------------------</span>
-                <br>
-            </h1>
-        </div>
-    </div>
-
-</div>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>결과페이지</title>
@@ -61,14 +12,13 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <style>
-
         * {
             font-family: 'Noto Sans', sans-serif;
             text-align: center;
@@ -86,14 +36,15 @@
         .modal {
             position: absolute;
             top: 0;
-            left : 0;
+            left: 0;
 
             width: 100%;
             height: 100%;
 
             display: none;
 
-            background-color: rgba(0, 0, 0, 0.4);;
+            background-color: rgba(0, 0, 0, 0.4);
+            ;
         }
 
         .modal.show {
@@ -162,13 +113,13 @@
     </div>
     <script>
         $(document).ready(function () {
-            <!-- 코드 정리 필요 -->
-            <!-- 제이쿼리 사용 해야 할듯 -->
-            <!-- 모달 안에 버튼 만들어야 함 -->
+            // <!-- 코드 정리 필요 -->
+            // <!-- 제이쿼리 사용 해야 할듯 -->
+            // <!-- 모달 안에 버튼 만들어야 함 -->
 
-            <!-- 모달 생성 -->
+            // <!-- 모달 생성 -->
             modal.classList.toggle('show');
-            <!-- Body 스크롤 막기 -->
+            // <!-- Body 스크롤 막기 -->
             body.style.overflow = 'hidden';
         });
 
@@ -176,7 +127,7 @@
         const modal = document.querySelector('.modal');
         const btnOpenPopup = document.querySelector('.btn-open-popup');
 
-        <!-- 모달창 띄우기 버튼 이벤트 리스너 -->
+        // <!-- 모달창 띄우기 버튼 이벤트 리스너 -->
         btnOpenPopup.addEventListener('click', () => {
             modal.classList.toggle('show');
 
@@ -185,7 +136,7 @@
             }
         });
 
-        <!-- 모달창 이벤트 리스너 -->
+        // <!-- 모달창 이벤트 리스너 -->
         modal.addEventListener('click', (even) => {
             if (event.target === modal) {
                 modal.classList.toggle('show');
@@ -196,6 +147,12 @@
             }
         });
     </script>
-    </body>
->>>>>>> adbb3809e12f2b59dc532f80e7c813ce1a8b8b31
+</body>
+
+</div>
+</div>
+
+</div>
+</body>
+
 </html>
