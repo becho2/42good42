@@ -12,7 +12,7 @@ app = Flask(__name__)
 def main():
     return render_template('main.html')
 
-## 메인 HTML 화면 보여주기
+## 결과페이지 HTML 화면 보여주기
 @app.route('/result')
 def result():
     return render_template('result.html')
