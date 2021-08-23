@@ -169,9 +169,10 @@
          */
         function selectAnswer(selectedAnswer){
             if(selectedAnswer === correctAnswer){
-                // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
+                modal("answer-check",true);
             } else {
-                // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
+                // 모달창에 아쉽네요! 문구와 함께 description을 넣어 띄우기
+                modal("answer-check",false);
             }
 
         }
@@ -187,12 +188,69 @@
 
         /**
          * @brief O 또는 X 클릭시 모달창 띄우는 함수
-         * @param {}
+         * @param {string} id 띄울 모달 창의 id
+         * @param {boolean} check 정답인지 오답인지
          * @returns {}
          * @author 김진회
          * @date 21.08.23
+         * 출처: https://stove99.github.io/javascript/2019/04/19/javasript-center-modal/
          */
-        function
+        function modal(id, check) {
+            const zIndex = 9999;
+            const modal = document.getElementById(id);
+            console.log(modal);
+
+            // 모달 div 뒤에 희끄무레한 레이어
+            const bg = document.createElement('div');
+            bg.setStyle({
+                position: 'fixed',
+                zIndex: zIndex,
+                left: '0px',
+                top: '0px',
+                width: '100%',
+                height: '100%',
+                overflow: 'auto',
+                // 레이어 색깔은 여기서 바꾸면 됨
+                backgroundColor: 'rgba(0,0,0,0.4)'
+            });
+            if(check){
+                $('#answer-check').html("정답입니다!");
+            } else {
+                $('#answer-check').html("아쉽네요!");
+            }
+            let temp_des = `${description}`
+            $('#answer-check').append(temp_des);
+            document.body.append(bg);
+
+            // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+            modal.querySelector('.modal_close_btn').addEventListener('click', function () {
+                bg.remove();
+                modal.style.display = 'none';
+                setQuiz(seq);
+            });
+
+            modal.setStyle({
+                position: 'fixed',
+                display: 'block',
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+                // 시꺼먼 레이어 보다 한칸 위에 보이기
+                zIndex: zIndex + 1,
+
+                // div center 정렬
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                msTransform: 'translate(-50%, -50%)',
+                webkitTransform: 'translate(-50%, -50%)'
+            });
+        }
+
+        // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+        Element.prototype.setStyle = function (styles) {
+            for (var k in styles) this.style[k] = styles[k];
+            return this;
+        };
 
 
         // 몇 문제를 맞추고 있는지를 js 변수에 담으면 되나? 아니면 localStorage에 넣을까?
@@ -202,9 +260,8 @@
 
 <body>
 <div id="answer-check">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem
-    voluptatum ex reiciendis aut in incidunt?
-    <a class="modal_close_btn">닫기</a>
+
+    <a class="modal_close_btn">다음 문제로</a>
 </div>
 <div class="wrap">
     <div class="item-img">
