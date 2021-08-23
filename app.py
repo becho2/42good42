@@ -43,27 +43,27 @@ def member_login():
     ids = ['은정','진회','형준','주은','나현']
     password = 'good42'
     if request.method == 'GET':
-        return render_template('admin_login.html')
+        return render_template('admin.html')
     elif request.method == 'POST':
         userid = request.form.get("userid", type=str)
         pw = request.form.get("userPW", type=str)
 
         if userid == "":
             flash("아이디를 입력하세요")
-            return render_template('admin_login.html')
+            return render_template('admin.html')
         elif pw == "":
             flash("비밀번호를 입력하세요")
-            return render_template('admin_login.html')
+            return render_template('admin.html')
         else:
             if userid not in ids:
                 flash("아이디가 존재하지 않습니다.")
-                return render_template('admin_login.html')
+                return render_template('admin.html')
             elif pw == password:
                 session["logged_in"] = userid
                 return render_template('admin.html', userid = userid)
             else:
                 flash("비밀번호가 틀렸습니다.")
-                return render_template('admin_login.html')
+                return render_template('admin.html')
 
 @app.route('/admin_quiz', methods=['POST'])
 def admin_quiz():

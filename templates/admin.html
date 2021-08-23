@@ -28,11 +28,57 @@
         <span style="color: black; font-size:0.9rem">{{userid}}님 <br>환영합니다</span> <br>
         <button type="button" class="btn btn-light" onclick="location.href='/logout' "
             style="height: 33px; font-size: 13px">로그아웃</button>
-        {%else%}<form action="/" method="POST">
-            <!--<button type="submit" class="btn btn-secondary" style="width: 90px; height: 33px; font-size: 13px;">로그인</button>-->
-            <li> <a href="/admin"><i class="fas fa-key"></i></a></li>
-        </form>
-        {%endif%}
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                </div>
+                <input type="text" class="form-control" placeholder="이름을 입력해주세요" aria-label="name"
+                       aria-describedby="basic-addon1" id="name">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">전화번호</label>
+                </div>
+                <select class="custom-select" id="phone1">
+                    <option selected>선택</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">수량</label>
+                </div>
+                <select class="custom-select" id="cnt">
+                    <option selected>선택</option>
+                    <option value="1">1 바구니</option>
+                    <option value="2">2 바구니(10% 추가 할인)</option>
+                    <option value="3">3 바구니(20% 추가 할인+배송비 무료)</option>
+                </select>
+            </div>
+            <div class="wrap_btn">
+                <button onclick="saveOrder()" type="submit" class="btn btn-primary">주문하기</button>
+            </div>
+        </div>
+        <table class="type07">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>수량</th>
+                    <th>주소</th>
+                    <th>연락처</th>
+                </tr>
+            </thead>
+            <tbody id="orderTable">
+
+            </tbody>
+        </table>
+        {%else%}
         <form method="post" action="/admin_quiz">
             <ul>
 
@@ -43,6 +89,8 @@
                 <button type="submit" class="btn_login">로그인</button>
             </ul>
         </form>
+        {%endif%}
+
 
     </div>
 </body>
