@@ -38,14 +38,10 @@ def result():
 ## 문제번호, 문제, 답 이런 형태로 DB에 넣어놓고 /admin 페이지에서는 문제를 수정할 수 있게 하고?
 # 로그인기능 및 페이지 구현
 # author 김진회
-# modifier 이민훈 2021.08.05
-# session["logged_in"] = True 를 넣어주면 로그인 성공한 이후의 상황이 됨.
-# 로그인 페이지 별도 개설로 인해, 링크 및 render_template 페이지 변경
 @app.route('/admin', methods=['GET', 'POST'])
 def member_login():
-    
     ids = ['은정','진회','형준','주은','나현']
-    password = 'reallygood42'
+    password = 'good42'
     if request.method == 'GET':
         return render_template('admin_login.html')
     elif request.method == 'POST':
