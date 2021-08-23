@@ -28,55 +28,51 @@
     -->
 
     <style>
+        .container {
+            margin-left: auto;
+            margin-right: auto;
 
-        .main-box {
-            width: auto;
-            height: 50%;
-            padding-bottom: 30%;
-            margin: 0;
-            border: solid;
-            solid-color: gray;
+            background-color: #4CAF50;
         }
 
-        .modal {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* 매우 작은 기기들 (모바일폰, 768px 보다 작은) */
+        /* 부트스트랩에서 이것은 기본이므로 미디어쿼리가 없습니다. */
 
-            width: 100%;
-            height: 100%;
-
-            display: none;
-
-            background-color: rgba(0, 0, 0, 0.4);
-            ;
+        /* 작은 기기들 (태블릿, 768px 이상) */
+        @media (min-width:768px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
         }
 
-        .modal.show {
+        /* 중간 기기들 (데스크탑, 992px 이상) */
+        @media (min-width:992px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
+        }
+
+        /* 큰 기기들 (큰 데스크탑, 1200px 이상) */
+        @media (min-width:1200px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
+        }
+
+        .sort {
+            float: none;
+            margin: 0 auto;
+        }
+
+        .result-img {
+            width: 455px;
+            height: 350px;
+
+            margin: auto;
             display: block;
-        }
-
-        .modal_body {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-
-            width: 400px;
-            height: 400px;
-
-            padding: 40px;
-
-            text-align: center;
-
-            background-color: rgb(255, 255, 255);
-            border-radius: 10px;
-            box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
-            transform: translateX(-50%) translateY(-50%);
-        }
-
-        .img {
-            text-align: center;
         }
     </style>
 </head>
@@ -86,78 +82,24 @@
 <!-- https://wikim.tistory.com/201 깃 업로드 자꾸 에러남 확인 필요 -->
 
 <body>
-    <div>
-        <div class="main-box">
-            <div class="modal">
-                <div class="modal_body">Modal</div>
-            </div>
-            <button class="btn-open-popup">Modal 띄우기</button>
-
-            <div class="img">
-                <img src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
-                <h1 class="posting-box">
-                    <strong>홍길동</strong>
-                    <strong>님의</strong>
-                    <br>
-                    <strong> 분리 수고 레벨은 4</strong>
-                    <br>
-                    <br>
-                    <span>👉 분리수고력 55% 👈</span>
-                    <br>
-                    <br>
-                    <span>🗑 쓰레기의 분수를 잘 아는 수고 🗑 </span>
-                    <br>
-                    <strong>'자기 분리수거는 알고 살아야죠'</strong>
-                    <br>
-                    <br>
-                    <span>--------------------------------------</span>
-                    <br>
-                </h1>
+    <div class="container mt-4" style="border: solid 3px black">
+        <div class="row">
+            <div class="col-10 pt-4 sort">
+                <img class="result-img" src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
             </div>
         </div>
+        <div class="row">
+            <div>
+                <p>당신은 총10개의 문제 중 <span></span>을 맞추셨습니다.</p>
+            </div>
+        </div>
+        <div class="row">
+        </div>
     </div>
+
     <script>
-        $(document).ready(function () {
-            // <!-- 코드 정리 필요 -->
-            // <!-- 제이쿼리 사용 해야 할듯 -->
-            // <!-- 모달 안에 버튼 만들어야 함 -->
 
-            // <!-- 모달 생성 -->
-            modal.classList.toggle('show');
-            // <!-- Body 스크롤 막기 -->
-            body.style.overflow = 'hidden';
-        });
-
-        const body = document.querySelector('body');
-        const modal = document.querySelector('.modal');
-        const btnOpenPopup = document.querySelector('.btn-open-popup');
-
-        // <!-- 모달창 띄우기 버튼 이벤트 리스너 -->
-        btnOpenPopup.addEventListener('click', () => {
-            modal.classList.toggle('show');
-
-            if (modal.classList.contains('show')) {
-                body.style.overflow = 'hidden';
-            }
-        });
-
-        // <!-- 모달창 이벤트 리스너 -->
-        modal.addEventListener('click', (even) => {
-            if (event.target === modal) {
-                modal.classList.toggle('show');
-
-                if (!modal.classList.contains('show')) {
-                    body.style.overflow = 'auto';
-                }
-            }
-        });
     </script>
-</body>
-
-</div>
-</div>
-
-</div>
 </body>
 
 </html>
