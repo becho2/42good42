@@ -17,6 +17,10 @@ db = conn.good42
 # def index():
 #     return render_template('index.html')
 
+##quiz test
+@app.route('/test')
+def quiztest():
+    return render_template('quiz_test.html')
 
 ## 메인 HTML 화면 보여주기
 @app.route('/')
@@ -24,9 +28,15 @@ def main():
     return render_template('main.html')
 
 ## 퀴즈페이지 HTML 화면 보여주기
-@app.route('/quiz', methods=["GET"])
-def quiz():    
-    return render_template('quiz.html')
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+    if request.method == 'GET':
+        return render_template('quiz.html')
+    elif request.method == 'POST':
+        seq = request.form['seq']
+        quiz = db.quiz.find_one({'no': seq}, {'_id': False})
+        return jsonify({'msg': '성공', 'quiz': quiz})
+
 
 ## 결과페이지 HTML 화면 보여주기
 @app.route('/result')
