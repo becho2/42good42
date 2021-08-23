@@ -41,7 +41,7 @@ def result():
 # author 김진회
 @app.route('/admin', methods=['GET', 'POST'])
 def member_login():
-    ids = ['은정','진회','형준','주은','나현']
+    ids = ['진회','형준','은정','나현']
     password = 'good42'
     if request.method == 'GET':
         return render_template('admin.html')
