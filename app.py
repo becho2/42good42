@@ -8,6 +8,7 @@ app.config['SECRET_KEY'] = '123456790'
 
 # Set mongo db
 conn = MongoClient()
+#conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
 
@@ -75,13 +76,17 @@ def admin_quiz():
         no = request.form['quizno']
         content = request.form['content']
         answer = request.form['answer']
+        # 이미 DB에 있는 퀴즈번호로 요청이 들어오면 기존의 해당 번호 퀴즈를 삭제하고 재등록
+        check_cnt = db.quiz.find({"no": no}).count()
+        if check_cnt > 0:
+            db.quiz.delete_one({"no":no})
         doc = {
             "no": no,
             "content": content,
             "answer": answer,
         }
         db.quiz.insert_one(doc)
-        return jsonify({'msg': '퀴즈 등록 완료!'})
+        return jsonify({'msg': '퀴즈 등록(수정) 완료!'})
     else:
         return None
 

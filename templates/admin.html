@@ -46,25 +46,27 @@
          * @returns {}
          * @author 김진회
          */
-        function saveQuiz(){
-            let quizno = $('#quizno').val()
-            let content = $('#content').val()
-            let answer = $('#answer').val()
-            $.ajax({
-                dataType:"json",
-                traditional: true,
-                type: "POST",
-                url: "/admin_quiz",
-                data: {
-                    "quizno": quizno,
-                    "content": content,
-                    "answer": answer
-                },
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload()
-                }
-            })
+        function saveQuiz() {
+            if (confirm("정말 등록하시겠습니까? 동일 퀴즈번호일 경우 기존 데이터가 삭제(덮어쓰기)됩니다.")) {
+                let quizno = $('#quizno').val()
+                let content = $('#content').val()
+                let answer = $('#answer').val()
+                $.ajax({
+                    dataType: "json",
+                    traditional: true,
+                    type: "POST",
+                    url: "/admin_quiz",
+                    data: {
+                        "quizno": quizno,
+                        "content": content,
+                        "answer": answer
+                    },
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload()
+                    }
+                })
+            }
         }
 
         /**
