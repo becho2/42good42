@@ -76,6 +76,7 @@ def admin_quiz():
         no = request.form['quizno']
         content = request.form['content']
         answer = request.form['answer']
+        description = request.form['description']
         # 이미 DB에 있는 퀴즈번호로 요청이 들어오면 기존의 해당 번호 퀴즈를 삭제하고 재등록
         check_cnt = db.quiz.find({"no": no}).count()
         if check_cnt > 0:
@@ -84,6 +85,7 @@ def admin_quiz():
             "no": no,
             "content": content,
             "answer": answer,
+            "description": description,
         }
         db.quiz.insert_one(doc)
         return jsonify({'msg': '퀴즈 등록(수정) 완료!'})

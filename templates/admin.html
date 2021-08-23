@@ -51,6 +51,7 @@
                 let quizno = $('#quizno').val()
                 let content = $('#content').val()
                 let answer = $('#answer').val()
+                let description = $('#description').val()
                 $.ajax({
                     dataType: "json",
                     traditional: true,
@@ -59,7 +60,8 @@
                     data: {
                         "quizno": quizno,
                         "content": content,
-                        "answer": answer
+                        "answer": answer,
+                        "description":description
                     },
                     success: function (response) {
                         alert(response['msg']);
@@ -82,18 +84,20 @@
                 data: {},
                 success: function (response) {
                     // console.log(response)
-                    const data = response['quiz']
-                    for (let i = 0; i < data.length; i++) {
+                    const quizdata = response['quiz']
+                    for (let i = 0; i < quizdata.length; i++) {
 
-                        let quizno = data[i]['no']
-                        let content = data[i]['content']
-                        let answer = data[i]['answer']
+                        let quizno = quizdata[i]['no']
+                        let content = quizdata[i]['content']
+                        let answer = quizdata[i]['answer']
+                        let description = quizdata[i]['description']
 
                         const temp_html = `
                                 <tr>
                                     <td>${quizno}</td>
                                     <td>${content}</td>
                                     <td>${answer}</td>
+                                    <td>${description}</td>
                                 </tr>
                             `
                         $("#quizTable").append(temp_html)
@@ -153,6 +157,13 @@
             <option value="X">X</option>
         </select>
     </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">해설내용</span>
+        </div>
+        <input type="text" class="form-control" placeholder="정답을 설명할 해설 내용을 입력해주세요" aria-label="description"
+               aria-describedby="basic-addon1" id="description">
+    </div>
     <div class="wrap_btn">
         <button onclick="saveQuiz()" type="submit" class="btn btn-primary">입력(수정)하기</button>
     </div>
@@ -162,6 +173,7 @@
         <th>번호</th>
         <th>퀴즈</th>
         <th>정답</th>
+        <th>설명</th>
     </tr>
     </thead>
     <tbody id="quizTable">
