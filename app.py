@@ -43,7 +43,7 @@ def result():
 # 로그인 페이지 별도 개설로 인해, 링크 및 render_template 페이지 변경
 @app.route('/admin', methods=['GET', 'POST'])
 def member_login():
-    
+
     ids = ['은정','진회','형준','주은','나현']
     password = 'reallygood42'
     if request.method == 'GET':
