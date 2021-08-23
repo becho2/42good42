@@ -3,22 +3,23 @@
     padding: 0;
 }
 
-.login_div {
+.admin_div {
+    width: 800px;
     margin: 170px auto 200px auto;
     font-family: 'Poor Story', cursive;
 }
 
-.login_div ul {
+.admin_div ul {
     border: 1px solid #e6e6ea;
     padding: 0;
 }
 
-.login_div ul li {
+.admin_div ul li {
     list-style: none;
     margin: 20px auto;
 }
 
-.login_div ul li input {
+.admin_div ul li input {
     width: 95%;
     height: 30px;
     margin: 0 auto;
@@ -26,7 +27,7 @@
     border: 1px solid #e6e6ea;
 }
 
-.login_div ul a{
+.admin_div ul a{
     text-decoration-line: none;
 }
 

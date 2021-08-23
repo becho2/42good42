@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, flash, session
+from flask import Flask, render_template, jsonify, request, flash, session, redirect
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -65,9 +65,31 @@ def member_login():
                 flash("비밀번호가 틀렸습니다.")
                 return render_template('admin.html')
 
-@app.route('/admin_quiz', methods=['POST'])
+## 퀴즈를 DB에 넣을 때 받는 api
+@app.route('/admin_quiz', methods=['GET', 'POST'])
 def admin_quiz():
-    return None
+    if request.method == 'GET':
+        quiz = list(db.quiz.find({}, {'_id': False}))
+        return jsonify({'msg': '성공', 'quiz': quiz})
+    elif request.method == 'POST':
+        no = request.form['quizno']
+        content = request.form['content']
+        answer = request.form['answer']
+        doc = {
+            "no": no,
+            "content": content,
+            "answer": answer,
+        }
+        db.quiz.insert_one(doc)
+        return jsonify({'msg': '퀴즈 등록 완료!'})
+    else:
+        return None
+
+## 로그아웃
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop('logged_in',None)
+    return redirect('/admin')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
