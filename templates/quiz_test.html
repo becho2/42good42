@@ -104,7 +104,9 @@
     <script>
         /**
          * @author 김진회
+         * 문제 순서 seq 는 첫번째 문제부터이므로 1로 초기화하여 시작
          */
+        let seq = 1;
         $(document).ready(function () {
             setQuiz();
         });
@@ -114,6 +116,7 @@
          * @param {int} seq 이번에 세팅해야할 퀴즈 번호
          * @returns {}
          * @author 김진회
+         * @date 21.08.23
          */
         function setQuiz(seq = 1) {
             $.ajax({
@@ -124,11 +127,40 @@
                     "seq": seq,
                 },
                 success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload()
+                    console.log(response.quiz);
+                    let quiz = response.quiz['content']
+                    let correctAnswer = response.quiz['answer']
+                    let description = response.quiz['description']
+                    let quizno = response.quiz['no']
+                    let temp_quiz = `${quiz}`
+                    $('#quiz').html(temp_quiz);
                 }
             })
         }
+
+        /**
+         * @brief 정답을 골랐을 때 맞았는지 틀렸는지와 설명을 띄우고, 점수 합산을 위해 이 정보를 저장합니다.
+         * @param {string} answer O를 골랐는지 X를 골랐는지에 대한 값
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.23
+         */
+        function selectAnswer(selectedAnswer){
+            if(selectedAnswer === correctAnswer){
+                // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
+            } else {
+                // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
+            }
+
+        }
+
+        /**
+         * @brief 답을 확인하고 다음 문제로 가는 버튼을 눌렀을 시 작동, setQuiz를 불러 다음 문제 세팅
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.23
+         */
 
 
         //
@@ -142,20 +174,19 @@
     </div>
     <div class="item-desc">
         <h1>첫 번째 문제! &nbsp; <span class="price">음식물 쓰레기</span></h1>
-        <p>
+        <p id="quiz">
             요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
         </p>
 
     </div>
     <div class="item-order">
-        <button type="button" onclick="order()" class="btn btn-primary btn-order"><span>O</span></button>
-        <button type="button" onclick="order()" class="btn btn-danger btn-order"><span>X</span></button>
+        <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
+        <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
     </div>
 
     <button type="button" onclick="location.href='/result'" class="btn btn-success"><span>다음 문제로</span></button>
 </div>
 
-</div>
 
 </body>
 

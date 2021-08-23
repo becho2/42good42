@@ -17,6 +17,10 @@ db = conn.good42
 # def index():
 #     return render_template('index.html')
 
+##quiz test
+@app.route('/test')
+def quiztest():
+    return render_template('quiz_test.html')
 
 ## 메인 HTML 화면 보여주기
 @app.route('/')
