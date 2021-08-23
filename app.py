@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, flash, session
+from flask import Flask, render_template, jsonify, request, flash, session, redirect
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -8,6 +8,7 @@ app.config['SECRET_KEY'] = '123456790'
 
 # Set mongo db
 conn = MongoClient()
+#conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
 
@@ -16,6 +17,10 @@ db = conn.good42
 # def index():
 #     return render_template('index.html')
 
+##quiz test
+@app.route('/test')
+def quiztest():
+    return render_template('quiz_test.html')
 
 ## 메인 HTML 화면 보여주기
 @app.route('/')
@@ -23,9 +28,15 @@ def main():
     return render_template('main.html')
 
 ## 퀴즈페이지 HTML 화면 보여주기
-@app.route('/quiz', methods=["GET"])
-def quiz():    
-    return render_template('quiz.html')
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+    if request.method == 'GET':
+        return render_template('quiz.html')
+    elif request.method == 'POST':
+        seq = request.form['seq']
+        quiz = db.quiz.find_one({'no': seq}, {'_id': False})
+        return jsonify({'msg': '성공', 'quiz': quiz})
+
 
 ## 결과페이지 HTML 화면 보여주기
 @app.route('/result')
@@ -38,40 +49,64 @@ def result():
 ## 문제번호, 문제, 답 이런 형태로 DB에 넣어놓고 /admin 페이지에서는 문제를 수정할 수 있게 하고?
 # 로그인기능 및 페이지 구현
 # author 김진회
-# modifier 이민훈 2021.08.05
-# session["logged_in"] = True 를 넣어주면 로그인 성공한 이후의 상황이 됨.
-# 로그인 페이지 별도 개설로 인해, 링크 및 render_template 페이지 변경
 @app.route('/admin', methods=['GET', 'POST'])
 def member_login():
-
-    ids = ['은정','진회','형준','주은','나현']
-    password = 'reallygood42'
+    ids = ['진회','형준','은정','나현']
+    password = 'good42'
     if request.method == 'GET':
-        return render_template('admin_login.html')
+        return render_template('admin.html')
     elif request.method == 'POST':
         userid = request.form.get("userid", type=str)
         pw = request.form.get("userPW", type=str)
 
         if userid == "":
             flash("아이디를 입력하세요")
-            return render_template('admin_login.html')
+            return render_template('admin.html')
         elif pw == "":
             flash("비밀번호를 입력하세요")
-            return render_template('admin_login.html')
+            return render_template('admin.html')
         else:
             if userid not in ids:
                 flash("아이디가 존재하지 않습니다.")
-                return render_template('admin_login.html')
+                return render_template('admin.html')
             elif pw == password:
                 session["logged_in"] = userid
                 return render_template('admin.html', userid = userid)
             else:
                 flash("비밀번호가 틀렸습니다.")
-                return render_template('admin_login.html')
+                return render_template('admin.html')
 
-@app.route('/admin_quiz', methods=['POST'])
+## 퀴즈를 DB에 넣을 때 받는 api
+@app.route('/admin_quiz', methods=['GET', 'POST'])
 def admin_quiz():
-    return None
+    if request.method == 'GET':
+        quiz = list(db.quiz.find({}, {'_id': False}))
+        return jsonify({'msg': '성공', 'quiz': quiz})
+    elif request.method == 'POST':
+        no = request.form['quizno']
+        content = request.form['content']
+        answer = request.form['answer']
+        description = request.form['description']
+        # 이미 DB에 있는 퀴즈번호로 요청이 들어오면 기존의 해당 번호 퀴즈를 삭제하고 재등록
+        check_cnt = db.quiz.find({"no": no}).count()
+        if check_cnt > 0:
+            db.quiz.delete_one({"no":no})
+        doc = {
+            "no": no,
+            "content": content,
+            "answer": answer,
+            "description": description,
+        }
+        db.quiz.insert_one(doc)
+        return jsonify({'msg': '퀴즈 등록(수정) 완료!'})
+    else:
+        return None
+
+## 로그아웃
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop('logged_in',None)
+    return redirect('/admin')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

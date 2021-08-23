@@ -7,7 +7,6 @@
 {% endwith %}
 
 
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,36 +14,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>퀴즈 관리자</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>OX퀴즈 관리자</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/member.css">
+
+    <script>
+        $(document).ready(function () {
+            showQuizList();
+        });
+
+        /**
+         * @brief 새로운 퀴즈 또는 퀴즈의 변경사항을 등록하기 위해 DB로 보냅니다.(ajax)
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         */
+        function saveQuiz() {
+            if (confirm("정말 등록하시겠습니까? 동일 퀴즈번호일 경우 기존 데이터가 삭제(덮어쓰기)됩니다.")) {
+                let quizno = $('#quizno').val()
+                let content = $('#content').val()
+                let answer = $('#answer').val()
+                let description = $('#description').val()
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "/admin_quiz",
+                    data: {
+                        "quizno": quizno,
+                        "content": content,
+                        "answer": answer,
+                        "description":description
+                    },
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload()
+                    }
+                })
+            }
+        }
+
+        /**
+         * @brief 현재 DB등록된 퀴즈목록을 가져와 보여줍니다.(ajax)
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         */
+        function showQuizList(){
+            $.ajax({
+                type: "GET",
+                url: "/admin_quiz",
+                data: {},
+                success: function (response) {
+                    // console.log(response)
+                    const quizdata = response['quiz']
+                    for (let i = 0; i < quizdata.length; i++) {
+
+                        let quizno = quizdata[i]['no']
+                        let content = quizdata[i]['content']
+                        let answer = quizdata[i]['answer']
+                        let description = quizdata[i]['description']
+
+                        const temp_html = `
+                                <tr>
+                                    <td>${quizno}</td>
+                                    <td>${content}</td>
+                                    <td>${answer}</td>
+                                    <td>${description}</td>
+                                </tr>
+                            `
+                        $("#quizTable").append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
 </head>
 
 <body class="login_body">
-    <div class="login_div">
-        {%if userid%}
-        <span style="color: black; font-size:0.9rem">{{userid}}님 <br>환영합니다</span> <br>
-        <button type="button" class="btn btn-light" onclick="location.href='/logout' "
-            style="height: 33px; font-size: 13px">로그아웃</button>
-        {%else%}<form action="/" method="POST">
-            <!--<button type="submit" class="btn btn-secondary" style="width: 90px; height: 33px; font-size: 13px;">로그인</button>-->
-            <li> <a href="/admin"><i class="fas fa-key"></i></a></li>
-        </form>
-        {%endif%}
-        <form method="post" action="/admin_quiz">
-            <ul>
+<div class="admin_div">
+    <button type="button" class="btn btn-light" onclick="location.href='/' "
+            style="height: 33px; font-size: 13px">원래 홈페이지 메인으로 가기
+    </button>
+    {%if userid%}
+    <span style="color: black; font-size:0.9rem">관리자 {{userid}}님 <br>환영합니다</span> <br>
+    <button type="button" class="btn btn-light" onclick="location.href='/logout' "
+            style="height: 33px; font-size: 13px">로그아웃
+    </button>
 
-                <li><input type="text" placeholder="아이디" name="userid"></li>
 
-                <li><input type="password" placeholder="비밀번호" name="userPW"></li>
 
-                <button type="submit" class="btn_login">로그인</button>
-            </ul>
-        </form>
-
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text">퀴즈번호</label>
+        </div>
+        <select class="custom-select" id="quizno">
+            <option selected>선택</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
     </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">퀴즈내용</span>
+        </div>
+        <input type="text" class="form-control" placeholder="퀴즈내용을 입력해주세요" aria-label="name"
+               aria-describedby="basic-addon1" id="content">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text">정답</label>
+        </div>
+        <select class="custom-select" id="answer">
+            <option selected>선택</option>
+            <option value="O">O</option>
+            <option value="X">X</option>
+        </select>
+    </div>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">해설내용</span>
+        </div>
+        <input type="text" class="form-control" placeholder="정답을 설명할 해설 내용을 입력해주세요" aria-label="description"
+               aria-describedby="basic-addon1" id="description">
+    </div>
+    <div class="wrap_btn">
+        <button onclick="saveQuiz()" type="submit" class="btn btn-primary">입력(수정)하기</button>
+    </div>
+    <table class="type07">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>퀴즈</th>
+        <th>정답</th>
+        <th>설명</th>
+    </tr>
+    </thead>
+    <tbody id="quizTable">
+
+    </tbody>
+</table>
+</div>
+
+{%else%}
+<form method="post" action="/admin">
+    <ul>
+
+        <li><input type="text" placeholder="아이디" name="userid"></li>
+
+        <li><input type="password" placeholder="비밀번호" name="userPW"></li>
+
+        <button type="submit" class="btn_login">로그인</button>
+    </ul>
+</form>
+{%endif%}
+
+
+</div>
 </body>
 
 </html>
