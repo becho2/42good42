@@ -85,7 +85,8 @@
 
             /* 최종 정답 개수 localstorage에서 가져오기 */
             let totalCount = 11;
-            /*totalCount = localStorage.getItem('countCorrect');*/
+            totalCount = localStorage.getItem('countCorrect');
+            console.log(totalCount);
 
             $('#cnt').html(totalCount);
             $('#exampleModalCenter').modal("show");
@@ -94,27 +95,26 @@
 </head>
 
 <body>
-
-
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
 
     <div class="container mt-4" style="border: solid 3px black">
         <div class="row">
@@ -130,10 +130,6 @@
         <div class="row">
         </div>
     </div>
-
-    <script>
-
-    </script>
 </body>
 
 </html>
