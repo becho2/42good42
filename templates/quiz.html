@@ -235,7 +235,7 @@
          * @date 21.08.24
          */
         function selectAnswer(selectedAnswer) {
-            if (seq == 10) {
+            if (seq > 10) {
                 $('#btn-next').html("결과보러가기!");
             }
             if (selectedAnswer === correctAnswer) {
