@@ -17,10 +17,6 @@ db = conn.good42
 # def index():
 #     return render_template('index.html')
 
-##quiz test
-@app.route('/test')
-def quiztest():
-    return render_template('quiz_test.html')
 
 ## 메인 HTML 화면 보여주기
 @app.route('/')
@@ -28,6 +24,7 @@ def main():
     return render_template('main.html')
 
 ## 퀴즈페이지 HTML 화면 보여주기
+## GET으로 들어오면 단순히 화면을 보여주고, POST로 들어오면 DB에서 다음 문제 정보를 전달하는 api
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     if request.method == 'GET':
@@ -84,6 +81,7 @@ def admin_quiz():
         return jsonify({'msg': '성공', 'quiz': quiz})
     elif request.method == 'POST':
         no = request.form['quizno']
+        category = request.form['category']
         content = request.form['content']
         answer = request.form['answer']
         description = request.form['description']
@@ -93,6 +91,7 @@ def admin_quiz():
             db.quiz.delete_one({"no":no})
         doc = {
             "no": no,
+            "category": category,
             "content": content,
             "answer": answer,
             "description": description,

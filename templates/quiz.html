@@ -40,10 +40,6 @@
             background-size: cover;
         }
 
-        .price {
-            font-size: 20px;
-        }
-
         .item-desc {
             width: 600px;
             margin-top: 20px;
@@ -100,31 +96,253 @@
 
         }
 
-    </style>
+        /*#answer-check {*/
+        /*    display: none;*/
+        /*    width: 300px;*/
+        /*    padding: 20px 60px;*/
+        /*    background-color: #fefefe;*/
+        /*    border: 1px solid #888;*/
+        /*    border-radius: 3px;*/
+        /*}*/
 
+        /*#answer-check .btn-next {*/
+        /*    position: absolute;*/
+        /*    top: 10px;*/
+        /*    right: 10px;*/
+        /*}*/
+
+        /* 모달창 CSS 시작 */
+        #modal.modal-overlay {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal .modal-window {
+            background: rgba( 69, 139, 197, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 400px;
+            height: 500px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #modal .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+        /* 모달창 CSS 끝 */
+    </style>
+    <script>
+        /**
+         * @author 김진회
+         * 문제 순서 seq 는 첫번째 문제부터이므로 1로 초기화하여 시작
+         * @date 21.08.23
+         */
+        let seq = 1;
+        let countCorrect = 0;
+        let quiz = '';
+        let category = '';
+        let correctAnswer = '';
+        let description = '';
+        let quizno = '';
+        let temp_quiz = '';
+        let temp_cate = '';
+        let temp_check = '';
+
+        $(document).ready(function () {
+            localStorage.clear();
+            setQuiz();
+        });
+
+        /**
+         * @brief 현재 순서에 맞게 퀴즈를 세팅합니다.(ajax)
+         * @param {int} no 이번에 세팅해야할 퀴즈 번호
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.23
+         */
+        function setQuiz(no = 1) {
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                url: "/quiz",
+                data: {
+                    "seq": no,
+                },
+                success: function (response) {
+                    console.log(response.quiz);
+                    quiz = response.quiz['content']
+                    category = response.quiz['category']
+                    correctAnswer = response.quiz['answer']
+                    description = response.quiz['description']
+                    quizno = response.quiz['no']
+                    temp_quiz = `${quiz}`
+                    temp_cate = `${category}`
+                    $('#quiz').html(temp_quiz);
+                    $('#category').html(temp_cate);
+                }
+            })
+            //현재 풀고 있는 문제 번호를 +1해서 저장
+            seq++;
+        }
+
+        /**
+         * @brief 정답을 골랐을 때 맞았는지 틀렸는지와 설명을 띄우고, 점수 합산을 위해 이 정보를 저장합니다.
+         * @param {string} selectedAnswer O를 골랐는지 X를 골랐는지에 대한 값
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.24
+         */
+        function selectAnswer(selectedAnswer){
+            if(seq == 10){
+                $('#btn-next').html("결과보러가기!");
+            }
+            if(selectedAnswer === correctAnswer){
+                countCorrect++;
+                // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
+                temp_check = `정답입니다! <br/>`;
+                $('#description').html(temp_check);
+                modalOn()
+            } else {
+                // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
+                temp_check = `아쉽지만 오답이에요! <br/>`;
+                $('#description').html(temp_check);
+                modalOn()
+            }
+
+        }
+
+        /**
+         * @brief 다음 문제 버튼 작동 => 다음 문제 세팅 또는 로컬스토리지에 맞춘 개수 저장하고 결과페이지로 보내기
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.24
+         */
+        function next(){
+            if (seq > 10) {
+                // 10번 문제까지 풀었으면 seq가 11이 되었을 것, 그러면 몇 문제 맞췄는지를 저장하고 result페이지로 보내기
+                localStorage.setItem('countCorrect',countCorrect);
+                location.href = '/result';
+            } else {
+                setQuiz(seq);
+                const modal = document.getElementById("modal")
+                modal.style.display = "none"
+
+            }
+        }
+
+
+        /**
+         * @brief O 또는 X 클릭시 모달창 띄우는 함수
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.24
+         */
+        function modalOn(){
+            const modal = document.getElementById("modal")
+            // const btnModal = document.getElementById("btn-modal")
+            // btnModal.addEventListener("click", e => {
+                modal.style.display = "flex"
+            // })
+            const temp_des = `${description}`
+            $('#description').append(temp_des);
+        }
+
+
+    </script>
 
 </head>
 
 <body>
+<!--<div id="answer-check">-->
+<!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
+<!--    voluptatum ex reiciendis aut in incidunt?-->
+<!--    <a class="modal_close_btn">닫기</a>-->
+<!--</div>-->
 <div class="wrap">
     <div class="item-img">
     </div>
     <div class="item-desc">
-        <h1>첫 번째 문제! &nbsp; <span class="price">음식물 쓰레기</span></h1>
-        <p>
+        <h1>첫 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span></h1>
+        <p id="quiz">
             요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
         </p>
 
     </div>
     <div class="item-order">
-        <button type="button" onclick="order()" class="btn btn-primary btn-order"><span>O</span></button>
-        <button type="button" onclick="order()" class="btn btn-danger btn-order"><span>X</span></button>
+        <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
+        <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
     </div>
 
-    <button type="button" onclick="location.href='/result'" class="btn btn-success"><span>다음 문제로</span></button>
-</div>
+
 
 </div>
+<!--    <div id="container">-->
+<!--        <h2>Lorem Ipsum</h2>-->
+<!--        <div id="lorem-ipsum"></div>-->
+<!--    </div>-->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>모달</h2>
+            </div>
+            <div class="close-area">X</div>
+
+            <div class="content" id="description">
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+
+            </div>
+            <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
+        </div>
+    </div>
+    <script>
+        // const loremIpsum = document.getElementById("lorem-ipsum")
+        // fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        //     .then(response => response.text())
+        //     .then(result => loremIpsum.innerHTML = result)
+    </script>
 
 </body>
 
