@@ -28,6 +28,7 @@ def main():
     return render_template('main.html')
 
 ## 퀴즈페이지 HTML 화면 보여주기
+## GET으로 들어오면 단순히 화면을 보여주고, POST로 들어오면 DB에서 다음 문제 정보를 전달하는 api
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     if request.method == 'GET':

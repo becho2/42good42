@@ -100,29 +100,29 @@
 
         }
 
-        #answer-check {
-            display: none;
-            width: 300px;
-            padding: 20px 60px;
-            background-color: #fefefe;
-            border: 1px solid #888;
-            border-radius: 3px;
-        }
+        /*#answer-check {*/
+        /*    display: none;*/
+        /*    width: 300px;*/
+        /*    padding: 20px 60px;*/
+        /*    background-color: #fefefe;*/
+        /*    border: 1px solid #888;*/
+        /*    border-radius: 3px;*/
+        /*}*/
 
-        #answer-check .btn-next {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+        /*#answer-check .btn-next {*/
+        /*    position: absolute;*/
+        /*    top: 10px;*/
+        /*    right: 10px;*/
+        /*}*/
 
         /* 모달창 CSS 시작 */
         #modal.modal-overlay {
+            display: none;
             width: 100%;
             height: 100%;
             position: absolute;
             left: 0;
             top: 0;
-            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -180,11 +180,14 @@
          * @date 21.08.23
          */
         let seq = 1;
+        let countCorrect = 0;
         let quiz = '';
         let correctAnswer = '';
         let description = '';
         let quizno = '';
         let temp_quiz = '';
+        let temp_check = '';
+
         $(document).ready(function () {
             setQuiz();
         });
@@ -226,9 +229,16 @@
          */
         function selectAnswer(selectedAnswer){
             if(selectedAnswer === correctAnswer){
+                countCorrect++;
                 // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
+                temp_check = `정답입니다! <br/>`;
+                $('#description').html(temp_check);
+                modalOn()
             } else {
                 // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
+                temp_check = `아쉽지만 오답이에요! <br/>`;
+                $('#description').html(temp_check);
+                modalOn()
             }
 
         }
@@ -240,6 +250,15 @@
          * @author 김진회
          * @date 21.08.23
          */
+        function next(){
+            if(seq > 10){
+               location.href("")
+            }
+            setQuiz(seq);
+            const modal = document.getElementById("modal")
+            modal.style.display = "none"
+            // 현재까지 정답 맞춘 개수 등을 어디 저장해야함.
+        }
 
 
         /**
@@ -249,7 +268,15 @@
          * @author 김진회
          * @date 21.08.23
          */
-        function
+        function modalOn(){
+            const modal = document.getElementById("modal")
+            // const btnModal = document.getElementById("btn-modal")
+            // btnModal.addEventListener("click", e => {
+                modal.style.display = "flex"
+            // })
+            const temp_des = `${description}`
+            $('#description').append(temp_des);
+        }
 
 
         // 몇 문제를 맞추고 있는지를 js 변수에 담으면 되나? 아니면 localStorage에 넣을까? 결과페이지쪽으로 어떻게 넘겨주지?
@@ -258,11 +285,11 @@
 </head>
 
 <body>
-<div id="answer-check">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem
-    voluptatum ex reiciendis aut in incidunt?
-    <a class="modal_close_btn">닫기</a>
-</div>
+<!--<div id="answer-check">-->
+<!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
+<!--    voluptatum ex reiciendis aut in incidunt?-->
+<!--    <a class="modal_close_btn">닫기</a>-->
+<!--</div>-->
 <div class="wrap">
     <div class="item-img">
     </div>
@@ -278,9 +305,36 @@
         <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
     </div>
 
-    <button type="button" onclick="location.href='/result'" class="btn btn-success"><span>다음 문제로</span></button>
-</div>
 
+
+</div>
+    <div id="container">
+        <h2>Lorem Ipsum</h2>
+        <div id="lorem-ipsum"></div>
+    </div>
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>모달</h2>
+            </div>
+            <div class="close-area">X</div>
+
+            <div class="content" id="description">
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+                <p>가나다라마바사 아자차카타파하</p>
+
+            </div>
+            <button type="button" onclick="next()" class="btn btn-success"><span>다음 문제로</span></button>
+        </div>
+    </div>
+    <script>
+        // const loremIpsum = document.getElementById("lorem-ipsum")
+        // fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        //     .then(response => response.text())
+        //     .then(result => loremIpsum.innerHTML = result)
+    </script>
 
 </body>
 
