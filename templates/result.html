@@ -77,15 +77,21 @@
     </style>
 
     <script>
+
         /* 로딩 후 모달 불러오기 */
+        /* https://alpreah.tistory.com/82 */
         $(document).ready(function () {
             // Handler for .ready() called.
+
+            /* 최종 정답 개수 localstorage에서 가져오기 */
+            let totalCount = 11;
+            /*totalCount = localStorage.getItem('countCorrect');*/
+
+            $('#cnt').html(totalCount);
             $('#exampleModalCenter').modal("show");
         });
     </script>
 </head>
-
-<!-- https://mojilee.tistory.com/8 노션 OX퀴즈 참조 -->
 
 <body>
 
@@ -100,7 +106,7 @@
         </button>
       </div>
       <div class="modal-body">
-        당신읜 총 00개의 문제를 맞혔습니다.
+          <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
