@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,4 +101,137 @@
 
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>OX퀴즈</title>
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/css/member.css">
+    -->
+
+    <style>
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+
+            background-color: #4CAF50;
+        }
+
+        /* 매우 작은 기기들 (모바일폰, 768px 보다 작은) */
+        /* 부트스트랩에서 이것은 기본이므로 미디어쿼리가 없습니다. */
+
+        /* 작은 기기들 (태블릿, 768px 이상) */
+        @media (min-width:768px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
+        }
+
+        /* 중간 기기들 (데스크탑, 992px 이상) */
+        @media (min-width:992px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
+        }
+
+        /* 큰 기기들 (큰 데스크탑, 1200px 이상) */
+        @media (min-width:1200px) {
+            .container {
+                width: 600px;
+                height: 834px;
+            }
+        }
+
+        .sort {
+            float: none;
+            margin: 0 auto;
+        }
+
+        .result-img {
+            width: 455px;
+            height: 350px;
+
+            margin: auto;
+            display: block;
+        }
+    </style>
+
+    <script>
+        /* 로딩 후 모달 불러오기 */
+        $(document).ready(function () {
+            // Handler for .ready() called.
+            $('#exampleModalCenter').modal("show");
+        });
+    </script>
+</head>
+
+<!-- https://mojilee.tistory.com/8 노션 OX퀴즈 참조 -->
+
+<body>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        당신읜 총 00개의 문제를 맞혔습니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container mt-4" style="border: solid 3px black">
+        <div class="row">
+            <div class="col-10 pt-4 sort">
+                <img class="result-img" src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <p>당신은 총10개의 문제 중 <span></span>을 맞추셨습니다.</p>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+>>>>>>> 93046548f0073cc5b6ee64d0252af22e0edddfda
 </html>
