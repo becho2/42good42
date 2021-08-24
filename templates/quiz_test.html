@@ -182,10 +182,12 @@
         let seq = 1;
         let countCorrect = 0;
         let quiz = '';
+        let category = '';
         let correctAnswer = '';
         let description = '';
         let quizno = '';
         let temp_quiz = '';
+        let temp_cate = '';
         let temp_check = '';
 
         $(document).ready(function () {
@@ -211,13 +213,17 @@
                 success: function (response) {
                     console.log(response.quiz);
                     quiz = response.quiz['content']
+                    category = response.quiz['category']
                     correctAnswer = response.quiz['answer']
                     description = response.quiz['description']
                     quizno = response.quiz['no']
                     temp_quiz = `${quiz}`
+                    temp_cate = `${category}`
                     $('#quiz').html(temp_quiz);
+                    $('#category').html(temp_cate);
                 }
             })
+            //현재 풀고 있는 문제 번호를 +1해서 저장
             seq++;
         }
 
@@ -229,12 +235,14 @@
          * @date 21.08.23
          */
         function selectAnswer(selectedAnswer){
+            if(seq == 10){
+                $('#btn-next').html("결과보러가기!");
+            }
             if(selectedAnswer === correctAnswer){
                 countCorrect++;
                 // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
                 temp_check = `정답입니다! <br/>`;
                 $('#description').html(temp_check);
-                $('#btn-next').html("결과보러가기!");
                 modalOn()
             } else {
                 // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
@@ -254,13 +262,14 @@
          */
         function next(){
             if (seq > 10) {
+                // 10번 문제까지 풀었으면 seq가 11이 되었을 것, 그러면 몇 문제 맞췄는지를 저장하고 result페이지로 보내기
                 localStorage.setItem('countCorrect',countCorrect);
                 location.href = '/result';
             } else {
                 setQuiz(seq);
                 const modal = document.getElementById("modal")
                 modal.style.display = "none"
-                // 현재까지 정답 맞춘 개수 등을 어디 저장해야함.
+
             }
         }
 
@@ -283,7 +292,6 @@
         }
 
 
-        // 몇 문제를 맞추고 있는지를 js 변수에 담으면 되나? 아니면 localStorage에 넣을까? 결과페이지쪽으로 어떻게 넘겨주지?
     </script>
 
 </head>
@@ -298,7 +306,7 @@
     <div class="item-img">
     </div>
     <div class="item-desc">
-        <h1>첫 번째 문제! &nbsp; <span class="price">음식물 쓰레기</span></h1>
+        <h1>첫 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span></h1>
         <p id="quiz">
             요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
         </p>
@@ -312,10 +320,10 @@
 
 
 </div>
-    <div id="container">
-        <h2>Lorem Ipsum</h2>
-        <div id="lorem-ipsum"></div>
-    </div>
+<!--    <div id="container">-->
+<!--        <h2>Lorem Ipsum</h2>-->
+<!--        <div id="lorem-ipsum"></div>-->
+<!--    </div>-->
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
             <div class="title">

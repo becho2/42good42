@@ -49,6 +49,7 @@
         function saveQuiz() {
             if (confirm("정말 등록하시겠습니까? 동일 퀴즈번호일 경우 기존 데이터가 삭제(덮어쓰기)됩니다.")) {
                 let quizno = $('#quizno').val()
+                let category = $('#category').val()
                 let content = $('#content').val()
                 let answer = $('#answer').val()
                 let description = $('#description').val()
@@ -58,6 +59,7 @@
                     url: "/admin_quiz",
                     data: {
                         "quizno": quizno,
+                        "category": category,
                         "content": content,
                         "answer": answer,
                         "description":description
@@ -87,6 +89,7 @@
                     for (let i = 0; i < quizdata.length; i++) {
 
                         let quizno = quizdata[i]['no']
+                        let category = quizdata[i]['category']
                         let content = quizdata[i]['content']
                         let answer = quizdata[i]['answer']
                         let description = quizdata[i]['description']
@@ -94,6 +97,7 @@
                         const temp_html = `
                                 <tr>
                                     <td>${quizno}</td>
+                                    <td>${category}</td>
                                     <td>${content}</td>
                                     <td>${answer}</td>
                                     <td>${description}</td>
@@ -138,6 +142,13 @@
             <option value="10">10</option>
         </select>
     </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">카테고리</span>
+        </div>
+        <input type="text" class="form-control" placeholder="카테고리" aria-label="name"
+               aria-describedby="basic-addon1" id="content">
+    </div>
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -170,6 +181,7 @@
     <thead>
     <tr>
         <th>번호</th>
+        <th>카테고리</th>
         <th>퀴즈</th>
         <th>정답</th>
         <th>설명</th>

@@ -85,6 +85,7 @@ def admin_quiz():
         return jsonify({'msg': '성공', 'quiz': quiz})
     elif request.method == 'POST':
         no = request.form['quizno']
+        category = request.form['category']
         content = request.form['content']
         answer = request.form['answer']
         description = request.form['description']
@@ -94,6 +95,7 @@ def admin_quiz():
             db.quiz.delete_one({"no":no})
         doc = {
             "no": no,
+            "category": category,
             "content": content,
             "answer": answer,
             "description": description,
