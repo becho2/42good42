@@ -234,6 +234,7 @@
                 // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
                 temp_check = `정답입니다! <br/>`;
                 $('#description').html(temp_check);
+                $('#btn-next').html("결과보러가기!");
                 modalOn()
             } else {
                 // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
@@ -245,7 +246,7 @@
         }
 
         /**
-         * @brief 답을 확인하고 다음 문제로 가는 버튼을 눌렀을 시 작동, setQuiz를 불러 다음 문제 세팅
+         * @brief 다음 문제 버튼 작동 => 다음 문제 세팅 또는 로컬스토리지에 맞춘 개수 저장하고 결과페이지로 보내기
          * @param {}
          * @returns {}
          * @author 김진회
@@ -329,7 +330,7 @@
                 <p>가나다라마바사 아자차카타파하</p>
 
             </div>
-            <button type="button" onclick="next()" class="btn btn-success"><span>다음 문제로</span></button>
+            <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
     <script>
