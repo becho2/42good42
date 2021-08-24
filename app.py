@@ -88,7 +88,7 @@ def admin_quiz():
         # 이미 DB에 있는 퀴즈번호로 요청이 들어오면 기존의 해당 번호 퀴즈를 삭제하고 재등록
         check_cnt = db.quiz.find({"no": no}).count()
         if check_cnt > 0:
-            db.quiz.delete_one({"no":no})
+            db.quiz.delete_one({"no": no})
         doc = {
             "no": no,
             "category": category,
