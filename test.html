@@ -1,71 +1,132 @@
 
-<!doctype html>
-<html lang="en">
+<html lang="ko"><head>
+    <meta charset="UTF-8">
+    <title>분리수거 테스트</title>
+<style>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+@media (min-width: 1281px) {
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+  /* CSS */
 
-    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
 
-    <style>
-        * {
-            font-family: 'Jua', sans-serif;
-        }
+@media (min-width: 1025px) and (max-width: 1280px) {
 
-        .wrap {
-            margin: auto;
-            width: 900px;
-        }
+  /* CSS */
 
-        .comment {
-            font-weight: bold;
-            color: blue;
-        }
+}
 
-        .posting-box {
-            margin: 10px auto 30px auto;
-            width:500px;
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
 
-            border: 3px solid black;
-            border-radius: 5px;
+@media (min-width: 768px) and (max-width: 1024px) {
 
-            padding: 25px;
-        }
-    </style>
-</head>
+  /* CSS */
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  /* CSS */
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  /* CSS */
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  /* CSS */
+
+}
+    html,
+    body {
+        margin: 0;
+    }
+
+    div {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../static/img_2/Untitled-1.jpg");
+        max-width: 100%;
+        height: auto;
+        padding: 50px;
+        position: center;
+        margin: 0;
+    }
+
+    .content-box {
+        position: center;
+        width: 100%;
+        height: 500px;
+        text-align: center;
+        margin-top: 500px;
+
+    }
+
+    .go-test {
+        background-color: green;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        margin: 0;
+        width: 30%;
+    }
+</style></head>
+
 
 <body>
-        <div class="card-columns">
-            <div class="card">
-                <img class="card-img-top"
-                    src="https://d2ur7st6jjikze.cloudfront.net/offer_photos/29590/185689_medium_1525763241.jpg?1525763241"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <a href="http://naver.com" class="card-title">여기 기사 제목이 들어가죠</a>
-                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
-                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
-                </div>
+
+    <div class="content-box">
+        <h3>분리수거 배출방법 얼마나 잘 알고 계신가요?</h3>
+        <h1 style="font-size: 50px; color: green">
+            분리수거<br>
+            배출방법<br>
+            레벨테스트</h1>
+
+        <p class="card-text">쓰레기 버릴 때마다 분리수거 열심히 하는 분들 많으실 텐데요.<br>
+
+            하지만 실제 재활용되는 건 버리는 양의 절반 정도라고 합니다.<br>
+
+            특히 플라스틱은 23%에 불과한데,<br>제품을 만들 때 재활용을 고려하지 않는 게 문제로 지적되고 있습니다.<br>
+            과연? 나는 분리수거 배출방법에 대해 얼마나 알고 있을까요?</p>
+        <a href="/quiz"><button class="go-test">테스트하러가기</button></a>
 
     </div>
-        </div>
-</body>
 
-</html>
+
+
+</body></html>
