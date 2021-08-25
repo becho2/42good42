@@ -28,6 +28,10 @@
     -->
 
     <style>
+        header {
+            height: 30px;
+        }
+
         .container {
             width: 600px;
 
@@ -36,8 +40,12 @@
             border: 1px solid mediumseagreen;
         }
 
-        .row {
+        .img-resize {
+            height: 400px;
+        }
 
+        .btn-set {
+            width: 50%;
         }
 
     </style>
@@ -61,17 +69,21 @@
 
             /* totalCount 결과에 따라 출력문구 변경 */
             if (totalCount <= 3) {
-                $('#resultImage').append('<img src="../static/img_2/1.jpg" style="width: 100%">');
-                $('#resultMessage').append('<h1> 지구야 미안해 bb</h1>');
+                $('#resultImage').append('<img src="../static/img_2/1.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 지구야 미안해 ㅠㅠ</h1>' +
+                    '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
             } else if (totalCount >= 4 && totalCount < 7) {
-                $('#resultImage').append('<img src="../static/img_2/2.jpg">');
-                $('#resultMessage').append('<h1> 대충 .. 이렇게 하면 되겠지..?</h1>');
+                $('#resultImage').append('<img src="../static/img_2/2.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 대충 .. 이렇게 하면 되겠지..?</h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
             } else if (totalCount >= 7 && totalCount < 9) {
-                $('#resultImage').append('<img src="../static/img_2/3.jpg">');
-                $('#resultMessage').append('<h1> 마스터까지 단 한 발짝!</h1>');
+                $('#resultImage').append('<img src="../static/img_2/3.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 마스터까지 단 한 발짝!</h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
             } else {
-                $('#resultImage').append('<img src="../static/img_2/4.jpg">');
-                $('#resultMessage').append('<h1> 당신은 분리수거 마스터!! </h1>');
+                $('#resultImage').append('<img src="../static/img_2/4.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 당신은 분리수거 마스터!! </h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
             }
         });
     </script>
@@ -101,12 +113,22 @@
         </div>
 
         <!-- Result -->
+        <header class="header"></header>
+
         <div class="container pt-4">
-            <div class="row px-4">
-                <div class="col col-xs" id="resultImage"><!-- Image 출력 --></div>
+            <div class="col col-xs" id="resultImage">
+                <!-- Image 출력 -->
             </div>
-            <div class="row pt-4 px-4">
-                <div class="col col-xs" id="resultMessage"><!-- Text 출력 --></div>
+            <div class="col col-xs">
+                <div id="resultMessage">
+                    <!-- Text 출력 -->
+                </div>
+            </div>
+            <div class="col col-xs pb-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg btn-set"> 공유하기</button>
+            </div>
+            <div class="col col-xs pb-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg btn-set"> 레벨업하기</button>
             </div>
         </div>
     </div>
