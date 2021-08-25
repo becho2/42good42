@@ -29,51 +29,17 @@
 
     <style>
         .container {
-            margin-left: auto;
-            margin-right: auto;
+            width: 600px;
 
-            background-color: #4CAF50;
-        }
-
-        /* 매우 작은 기기들 (모바일폰, 768px 보다 작은) */
-        /* 부트스트랩에서 이것은 기본이므로 미디어쿼리가 없습니다. */
-
-        /* 작은 기기들 (태블릿, 768px 이상) */
-        @media (min-width:768px) {
-            .container {
-                width: 600px;
-                height: 834px;
-            }
-        }
-
-        /* 중간 기기들 (데스크탑, 992px 이상) */
-        @media (min-width:992px) {
-            .container {
-                width: 600px;
-                height: 834px;
-            }
-        }
-
-        /* 큰 기기들 (큰 데스크탑, 1200px 이상) */
-        @media (min-width:1200px) {
-            .container {
-                width: 600px;
-                height: 834px;
-            }
-        }
-
-        .sort {
-            float: none;
             margin: 0 auto;
+
+            border: 1px solid mediumseagreen;
         }
 
-        .result-img {
-            width: 455px;
-            height: 350px;
+        .row {
 
-            margin: auto;
-            display: block;
         }
+
     </style>
 
     <script>
@@ -95,52 +61,53 @@
 
             /* totalCount 결과에 따라 출력문구 변경 */
             if (totalCount <= 3) {
-                $('#result').append("<h1> 지구야 미안해 bb</h1>");
+                $('#resultImage').append('<img src="../static/img_2/1.jpg" style="width: 100%">');
+                $('#resultMessage').append('<h1> 지구야 미안해 bb</h1>');
             } else if (totalCount >= 4 && totalCount < 7) {
-                $('#result').append("<h1> 대충 .. 이렇게 하면 되겠지..?</h1>");
+                $('#resultImage').append('<img src="../static/img_2/2.jpg">');
+                $('#resultMessage').append('<h1> 대충 .. 이렇게 하면 되겠지..?</h1>');
             } else if (totalCount >= 7 && totalCount < 9) {
-                $('#result').append("<h1> 마스터까지 단 한 발짝!</h1>");
+                $('#resultImage').append('<img src="../static/img_2/3.jpg">');
+                $('#resultMessage').append('<h1> 마스터까지 단 한 발짝!</h1>');
             } else {
-                $('#result').append("<h1> 당신은 분리수거 마스터!! </h1>");
+                $('#resultImage').append('<img src="../static/img_2/4.jpg">');
+                $('#resultMessage').append('<h1> 당신은 분리수거 마스터!! </h1>');
             }
         });
     </script>
 </head>
 
 <body>
-    <!-- Bootstrap Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- 본문 -->
-    <div class="container mt-4" style="border: solid 3px black">
-        <div class="row">
-            <div class="col-10 pt-4 sort">
-                <img class="result-img" src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
+        <!-- Result -->
+        <div class="container pt-4">
+            <div class="row px-4">
+                <div class="col col-xs" id="resultImage"><!-- Image 출력 --></div>
             </div>
-        </div>
-        <div class="row">
-            <div id="result">
+            <div class="row pt-4 px-4">
+                <div class="col col-xs" id="resultMessage"><!-- Text 출력 --></div>
             </div>
-        </div>
-        <div class="row">
         </div>
     </div>
 </body>
