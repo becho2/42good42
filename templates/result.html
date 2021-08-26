@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -8,19 +8,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
-    <title>OX퀴즈</title>
+    <title>분리수거 테스트</title>
     <!--
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,136 +28,192 @@
     -->
 
     <style>
-
-        .main-box {
-            width: auto;
-            height: 50%;
-            padding-bottom: 30%;
-            margin: 0;
-            border: solid;
-            solid-color: gray;
+        header {
+            height: 30px;
         }
 
-        .modal {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container {
+            width: 600px;
 
-            width: 100%;
-            height: 100%;
+            margin: 0 auto;
 
-            display: none;
-
-            background-color: rgba(0, 0, 0, 0.4);
-            ;
+            border: 1px solid mediumseagreen;
         }
 
-        .modal.show {
+        .modal-btn-set {
+            border-radius: 50%;
+            background: transparent;
+
             display: block;
+            text-align: center;
         }
 
-        .modal_body {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-
-            width: 400px;
+        .img-resize {
             height: 400px;
-
-            padding: 40px;
-
-            text-align: center;
-
-            background-color: rgb(255, 255, 255);
-            border-radius: 10px;
-            box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
-            transform: translateX(-50%) translateY(-50%);
         }
 
-        .img {
-            text-align: center;
+        .result-btn-set {
+            width: 50%;
         }
-    </style>
-</head>
 
-<!-- https://mojilee.tistory.com/8 노션 OX퀴즈 참조 -->
-<!-- https://7942yongdae.tistory.com/104 모달 참조 -->
-<!-- https://wikim.tistory.com/201 깃 업로드 자꾸 에러남 확인 필요 -->
+        /*
+        ##Device = Desktops
+        ##Screen = 1281px to higher resolution desktops
+        ##Device = 데스크탑
+        ##Screen = 1281px 이상 해상도 데스크탑
+        */
+        @media (min-width: 1281px) {
 
-<body>
-    <div>
-        <div class="main-box">
-            <div class="modal">
-                <div class="modal_body">Modal</div>
-            </div>
-            <button class="btn-open-popup">Modal 띄우기</button>
 
-            <div class="img">
-                <img src="https://images.typeform.com/images/ZQAVyWsnGZz4/image/default">
-                <h1 class="posting-box">
-                    <strong>홍길동</strong>
-                    <strong>님의</strong>
-                    <br>
-                    <strong> 분리 수고 레벨은 4</strong>
-                    <br>
-                    <br>
-                    <span>👉 분리수고력 55% 👈</span>
-                    <br>
-                    <br>
-                    <span>🗑 쓰레기의 분수를 잘 아는 수고 🗑 </span>
-                    <br>
-                    <strong>'자기 분리수거는 알고 살아야죠'</strong>
-                    <br>
-                    <br>
-                    <span>--------------------------------------</span>
-                    <br>
-                </h1>
-            </div>
-        </div>
-    </div>
-    <script>
-        $(document).ready(function () {
-            // <!-- 코드 정리 필요 -->
-            // <!-- 제이쿼리 사용 해야 할듯 -->
-            // <!-- 모달 안에 버튼 만들어야 함 -->
+        }
 
-            // <!-- 모달 생성 -->
-            modal.classList.toggle('show');
-            // <!-- Body 스크롤 막기 -->
-            body.style.overflow = 'hidden';
-        });
+        /*
+        ##Device = Laptops, Desktops
+        ##Screen = B/w 1025px to 1280px
+        ##Device = 랩탑, 데스크탑
+        ##Screen = 1025px에서 1280px 사이
+        */
 
-        const body = document.querySelector('body');
-        const modal = document.querySelector('.modal');
-        const btnOpenPopup = document.querySelector('.btn-open-popup');
+        @media (min-width: 1025px) and (max-width: 1280px) {
 
-        // <!-- 모달창 띄우기 버튼 이벤트 리스너 -->
-        btnOpenPopup.addEventListener('click', () => {
-            modal.classList.toggle('show');
 
-            if (modal.classList.contains('show')) {
-                body.style.overflow = 'hidden';
+        }
+
+        /*
+        ##Device = Tablets, Ipads (portrait),
+        ##Screen = B/w 768px to 1024px
+        ##Device = 태블릿, 아이패드(세로),
+        ##Screen = 768px에서 1024px 사이
+        */
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+
+
+        }
+
+        /*
+        ##Device = Tablets, Ipads (landscape)
+        ##Screen = B/w 768px to 1024px
+        ##Device = 태블릿, 아이패드(가로)
+        ##Screen = 768px에서 1024px 사이
+        */
+
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+        }
+
+        /*
+        ##Device = Low Resolution Tablets, Mobiles (Landscape)
+        ##Screen = B/w 481px to 767px
+        ##Device = 저해상도 태블릿, 모바일(가로)
+        ##Screen = 481px에서 767px 사이
+        */
+
+        @media (min-width: 481px) and (max-width: 767px) {
+
+
+        }
+
+        /*
+        ##Device = Most of the Smartphones Mobiles (Portrait)
+        ##Screen = B/w 320px to 479px
+        ##Device = 대부분의 스마트폰 모바일 기기(세로)
+        ##Screen = 320px에서 479px 사이
+        */
+
+        @media (min-width: 320px) and (max-width: 480px) {
+            .container {
+                width: 360px;
             }
-        });
 
-        // <!-- 모달창 이벤트 리스너 -->
-        modal.addEventListener('click', (even) => {
-            if (event.target === modal) {
-                modal.classList.toggle('show');
+            .img-resize {
+                height: 250px;
+            }
+        }
 
-                if (!modal.classList.contains('show')) {
-                    body.style.overflow = 'auto';
-                }
+    </style>
+
+    <script>
+
+        /* 로딩 후 모달 불러오기 */
+        /* https://alpreah.tistory.com/82 */
+        $(document).ready(function () {
+            // Handler for .ready() called.
+
+            /* 최종 정답 개수 localstorage에서 가져오기 */
+            let totalCount = 0;
+            totalCount = localStorage.getItem('countCorrect');
+            console.log(totalCount);
+
+            /* 모달에 정답 갯수 넣어주기 */
+            $('#cnt').html(totalCount);
+            /* 모달 생성 */
+            $('#exampleModalCenter').modal("show");
+
+            /* totalCount 결과에 따라 출력문구 변경 */
+            if (totalCount <= 3) {
+                $('#resultImage').append('<img src="../static/img_2/1.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 지구야 미안해 ㅠㅠ</h1>' +
+                    '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+            } else if (totalCount >= 4 && totalCount < 7) {
+                $('#resultImage').append('<img src="../static/img_2/2.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 대충 .. 이렇게 하면 되겠지..?</h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+            } else if (totalCount >= 7 && totalCount < 9) {
+                $('#resultImage').append('<img src="../static/img_2/3.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 마스터까지 단 한 발짝!</h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+            } else {
+                $('#resultImage').append('<img src="../static/img_2/4.jpg" class="img-resize" style="width: 100%" alt="">');
+                $('#resultMessage').append('<h1 style="text-align: center"> 당신은 분리수거 마스터!! </h1>' +
+                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
             }
         });
     </script>
-</body>
+</head>
 
-</div>
-</div>
+<body>
+    <div>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn modal-btn-set" data-dismiss="modal">
+                            <img src="../static/img_2/modal_btn.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- Result -->
+        <header class="header"></header>
+
+        <div class="container pt-4">
+            <div class="col col-xs" id="resultImage">
+                <!-- Image 출력 -->
+            </div>
+            <div class="col col-xs">
+                <div id="resultMessage">
+                    <!-- Text 출력 -->
+                </div>
+            </div>
+            <div class="col col-xs pb-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg result-btn-set"> 공유하기</button>
+            </div>
+            <div class="col col-xs pb-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg result-btn-set"> 레벨업하기</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

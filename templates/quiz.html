@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <!-- Required meta tags -->
@@ -8,19 +8,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
-    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+    <title>분리수거 테스트</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,7 @@
             margin-bottom: 20px;
         }
 
-        .item-desc > p {
+        .item-desc>p {
             font-size: 50px;
         }
 
@@ -73,7 +73,7 @@
             text-align: center;
         }
 
-        .btn-order > span {
+        .btn-order>span {
             width: 225px;
             height: 100px;
             line-height: 100px;
@@ -86,15 +86,14 @@
 
         }
 
-        .btn-primary:hover, .btn-primary:focus {
+        .btn-primary:hover,
+        .btn-primary:focus {
             border-color: #6fb03a;
             background-color: #333333;
             color: #FFF;
         }
 
-        .btn-danger {
-
-        }
+        .btn-danger {}
 
         /*#answer-check {*/
         /*    display: none;*/
@@ -129,19 +128,21 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
+
         #modal .modal-window {
-            background: rgba( 69, 139, 197, 0.70 );
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 13.5px );
-            -webkit-backdrop-filter: blur( 13.5px );
+            background: rgba(69, 139, 197, 0.70);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(13.5px);
+            -webkit-backdrop-filter: blur(13.5px);
             border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            border: 1px solid rgba(255, 255, 255, 0.18);
             width: 400px;
             height: 500px;
             position: relative;
             top: -100px;
             padding: 10px;
         }
+
         #modal .title {
             padding-left: 10px;
             display: inline;
@@ -149,9 +150,11 @@
             color: white;
 
         }
+
         #modal .title h2 {
             display: inline;
         }
+
         #modal .close-area {
             display: inline;
             float: right;
@@ -167,6 +170,7 @@
             text-shadow: 1px 1px 2px gray;
             color: white;
         }
+
         /* 모달창 CSS 끝 */
     </style>
     <script>
@@ -230,11 +234,11 @@
          * @author 김진회
          * @date 21.08.24
          */
-        function selectAnswer(selectedAnswer){
-            if(seq == 10){
+        function selectAnswer(selectedAnswer) {
+            if (seq > 10) {
                 $('#btn-next').html("결과보러가기!");
             }
-            if(selectedAnswer === correctAnswer){
+            if (selectedAnswer === correctAnswer) {
                 countCorrect++;
                 // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
                 temp_check = `정답입니다! <br/>`;
@@ -255,10 +259,10 @@
          * @author 김진회
          * @date 21.08.24
          */
-        function next(){
+        function next() {
             if (seq > 10) {
                 // 10번 문제까지 풀었으면 seq가 11이 되었을 것, 그러면 몇 문제 맞췄는지를 저장하고 result페이지로 보내기
-                localStorage.setItem('countCorrect',countCorrect);
+                localStorage.setItem('countCorrect', countCorrect);
                 location.href = '/result';
             } else {
                 setQuiz(seq);
@@ -274,11 +278,11 @@
          * @author 김진회
          * @date 21.08.24
          */
-        function modalOn(){
+        function modalOn() {
             const modal = document.getElementById("modal")
             // const btnModal = document.getElementById("btn-modal")
             // btnModal.addEventListener("click", e => {
-                modal.style.display = "flex"
+            modal.style.display = "flex"
             // })
             const temp_des = `${description}`
             $('#description').append(temp_des);
@@ -290,33 +294,33 @@
 </head>
 
 <body>
-<!--<div id="answer-check">-->
-<!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
-<!--    voluptatum ex reiciendis aut in incidunt?-->
-<!--    <a class="modal_close_btn">닫기</a>-->
-<!--</div>-->
-<div class="wrap">
-    <div class="item-img">
-    </div>
-    <div class="item-desc">
-        <h1>첫 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span></h1>
-        <p id="quiz">
-            요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
-        </p>
+    <!--<div id="answer-check">-->
+    <!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
+    <!--    voluptatum ex reiciendis aut in incidunt?-->
+    <!--    <a class="modal_close_btn">닫기</a>-->
+    <!--</div>-->
+    <div class="wrap">
+        <div class="item-img">
+        </div>
+        <div class="item-desc">
+            <h1>첫 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span></h1>
+            <p id="quiz">
+                요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
+            </p>
+
+        </div>
+        <div class="item-order">
+            <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
+            <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
+        </div>
+
+
 
     </div>
-    <div class="item-order">
-        <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
-        <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
-    </div>
-
-
-
-</div>
-<!--    <div id="container">-->
-<!--        <h2>Lorem Ipsum</h2>-->
-<!--        <div id="lorem-ipsum"></div>-->
-<!--    </div>-->
+    <!--    <div id="container">-->
+    <!--        <h2>Lorem Ipsum</h2>-->
+    <!--        <div id="lorem-ipsum"></div>-->
+    <!--    </div>-->
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
             <div class="title">
@@ -344,5 +348,3 @@
 </body>
 
 </html>
-
-
