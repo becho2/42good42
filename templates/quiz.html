@@ -4,7 +4,11 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <!-- 모바일에서 좌우로 스크롤이 생기는 현상을 막기 위해 추가한 meta태그, 기존과 겹쳐서 기존 건 주석처리 - 진회 -->
+    <!-- 출처: https://yongddugi.tistory.com/6-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -32,7 +36,7 @@
         }
 
         .item-img {
-            width: 600px;
+            width: 100%;
             height: 300px;
 
             background-image: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MjJfMTI5%2FMDAxNTkwMTM3MTM2ODUy.QcDIpQKCpBL5XOUcqlN5nvc3CoDyxC0iY4hEt1TLnDMg.atgYjYbRN9AW8C-MW3dObg4UzRRFp7xSRwp0fhDo294g.JPEG.cosmicgreenofficial%2FIMG_8589.jpg&type=a340");
@@ -95,6 +99,8 @@
 
         .btn-danger {}
 
+
+
         /*#answer-check {*/
         /*    display: none;*/
         /*    width: 300px;*/
@@ -111,6 +117,7 @@
         /*}*/
 
         /* 모달창 CSS 시작 */
+        /* 출처: http://yoonbumtae.com/?p=3632 */
         #modal.modal-overlay {
             display: none;
             width: 100%;
@@ -155,14 +162,14 @@
             display: inline;
         }
 
-        #modal .close-area {
+        /* #modal .close-area {
             display: inline;
             float: right;
             padding-right: 10px;
             cursor: pointer;
             text-shadow: 1px 1px 2px gray;
             color: white;
-        }
+        } */
 
         #modal .content {
             margin-top: 20px;
@@ -172,7 +179,59 @@
         }
 
         /* 모달창 CSS 끝 */
+
+        /* 미디어 쿼리 - 모바일 환경 시작*/
+        @media (max-width: 480px) {
+
+
+            .wrap {
+                width: 100%;
+                height: 900px;
+            }
+
+
+            .item-desc {
+                width: 100%;
+                /* margin-top: 20px;
+                margin-bottom: 20px; */
+            }
+
+            .item-desc>p {
+                font-size: 50px;
+            }
+
+            .item-order {
+                width: 100%;
+            }
+
+            .btn-order {
+                margin: auto;
+                width: 125px;
+                height: 125px;
+                display: inline;
+                font-size: 100px;
+                text-align: center;
+            }
+
+            .btn-order>span {
+                width: 112px;
+                height: 50px;
+                line-height: 50px;
+                display: block;
+                text-align: center;
+            }
+
+            #modal .modal-window {
+
+                width: 90%;
+                height: 400px;
+                padding: 0px;
+            }
+        }
+
+        /* 미디어 쿼리 - 모바일 환경 끝 */
     </style>
+
     <script>
         /**
          * @author 김진회
@@ -212,7 +271,7 @@
                     "seq": no,
                 },
                 success: function (response) {
-                    console.log(response.quiz);
+                    // console.log(response.quiz);
                     quiz = response.quiz['content']
                     category = response.quiz['category']
                     correctAnswer = response.quiz['answer']
@@ -333,9 +392,6 @@
 
             $('#number-of-quiz').html(koQuizno);
         }
-
-
-
     </script>
 
 </head>
@@ -372,9 +428,9 @@
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
             <div class="title">
-                <h2>모달</h2>
+                <h2>정답은?</h2>
             </div>
-            <div class="close-area">X</div>
+            <!-- <div class="close-area">X</div> -->
 
             <div class="content" id="description">
                 <p>가나다라마바사 아자차카타파하</p>
@@ -386,12 +442,26 @@
             <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
-    <script>
-        // const loremIpsum = document.getElementById("lorem-ipsum")
-        // fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-        //     .then(response => response.text())
-        //     .then(result => loremIpsum.innerHTML = result)
-    </script>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">분리수거 테스트</h5>
+                </div>
+                <div class="modal-body">
+                    <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-btn-set" data-dismiss="modal">
+                        <img src="../static/img_2/modal_btn.png" alt=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
