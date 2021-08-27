@@ -39,6 +39,7 @@
         @media (min-width: 481px) {
             .container {
                 width: 600px;
+                height: 100%;
 
                 margin: 0 auto;
 
@@ -60,10 +61,11 @@
             }
 
             .img-resize {
-                width: 60%;
+                width: 75%;
 
-                display : block;
-                margin : auto;
+                padding-top: 40px;
+                margin: auto;
+                display: block;
             }
 
             .result-btn-set {
@@ -115,6 +117,8 @@
             // Handler for .ready() called.
 
             console.log(window.innerHeight);
+
+            console.log($('#container').height());
 
             /* 최종 정답 개수 localstorage에서 가져오기 */
             let totalCount = 0;
@@ -172,9 +176,9 @@
         <!-- Result -->
         <div class="container pt-4">
             <div class="row">
-                <div style="background-color: #FFFFFF; margin: auto; width: 300px; height: 300px; border-radius: 50%; border: 3px solid green">
+                <div style="background-color: #FFFFFF; margin: auto; width: 300px; height: 300px; border-radius: 50%; border: 4px solid green">
                     <!-- Image 출력 -->
-                    <img src="../static/img_2/1.jpg" class="img-resize" alt="">
+                    <img src="../static/img_2/1.png" class="img-resize" alt="">
                 </div>
             </div>
             <div class="col col-xs">
