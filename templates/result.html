@@ -21,104 +21,179 @@
         crossorigin="anonymous"></script>
 
     <title>분리수거 테스트</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <!--
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../static/css/member.css">
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+
 
     <style>
+
+        * {
+            font-family: 'Gaegu', cursive;
+        }
+
         /*
         ##Device = Low Resolution Tablets, Mobiles (Landscape)
         ##Screen = B/w 481px to 767px
         ##Device = PC
         ##Screen = 481px 이상 해상도
         */
-
         @media (min-width: 481px) {
-            .container {
-                width: 600px;
+
+            html, body {
+                width: 100%;
                 height: 100%;
-
-                margin: 0 auto;
-
-                background-image: url("../static/img_2/Untitled-1.jpg");
-                background-size: cover;
             }
 
-            .modal-btn-set {
-                border-radius: 50%;
-                background: transparent;
+            .container-fluid {
+                height: 100%;
+                background-color: #fff9e2;
+            }
 
-                display: block;
+            .wrap {
+                width: 550px;
+                margin: auto;
+                padding-top:20px;
+                border: 4px solid darkorange;
+                border-radius: 12%;
+            }
+
+            .frame {
+                width: 300px;
+                height: 300px;
+
+                border-radius: 90%;
+                border: 4px solid orange;
+                background-color: white;
+
+                margin: auto;
                 text-align: center;
             }
 
-            .message {
-                padding-top: 20px;
-                color: #FFFFFF;
-            }
+            .status-img {
+                width: 80%;
+                height: 80%;
 
-            .img-resize {
-                width: 75%;
-
-                padding-top: 40px;
                 margin: auto;
+                text-align: center;
+            }
+
+            .title {
+                margin: auto;
+                text-align: center;
+            }
+
+            .comment {
+                margin: auto;
+                text-align: center;
+            }
+
+           hr {
+               /* background: url('http://i.stack.imgur.com/37Aip.png') no-repeat top center; */
+               background: url('../static/img_2/seed.png') no-repeat top center;
+               background-size: contain;
+               display: block;
+               height: 30px;
+               border: 0;
+               position: relative;
+           }
+
+            hr:before,
+            hr:after {
+                content: '';
                 display: block;
+                position: absolute;
+                background: #d7d7d7;
+                height: 2px;
+                top: 8px;
             }
 
-            .result-btn-set {
-                width: 50%;
-
-                background-color: green;
-                border: none;
-            }
-        }
-
-        /*
-        ##Device = Most of the Smartphones Mobiles (Portrait)
-        ##Screen = B/w 320px to 479px
-        ##Device = 대부분의 스마트폰 모바일 기기(세로)
-        ##Screen = 320px에서 479px 사이
-        */
-
-        @media (min-width: 320px) and (max-width: 480px) {
-            .container {
-                width: 100%;
-
-                background-image: url("../static/img_2/Untitled-1.jpg");
-                background-size: cover;
+            hr:before {
+                left: 0;
+                right: 52%;
+                margin-top: 5px;
+                margin-right: 10px;
+                background-color: orange;
             }
 
-            .img-resize {
-                width: 100%;
-            }
-
-             .message {
-                font-size: 0.7rem;
-            }
-
-            .result-btn-set {
-                width: 50%;
-
-                background-color: green;
-                border: none;
+            hr:after {
+                right: 0;
+                left: 52%;
+                margin-top: 5px;
+                margin-left: 10px;
+                background-color: orange;
             }
         }
-
     </style>
 
     <script>
+
+        let comm_txt1 = "<hr class= \"style-four\" id=\"hr-img1\">" +
+            "<h5 style=\"text-align: center;\" id=\"comm-txt\">\n" +
+            "                        <b>\n" +
+            "                        전부 쓰레기~~ 마구잡이로 배출한 당신! 🤦‍♂🤦‍♀ <br>\n" +
+            "                        쓴 소리 당첨입니다 ! <br>\n" +
+            "                        당장은 나 하나쯤은.. 하겠지만<br>\n" +
+            "                        몸소 느껴지는 날이 분명 다가와요.<br>\n" +
+            "                        방금 풀어본 10 문제만이라도 지켜주신다면<br>\n" +
+            "                        우리 지구가, 내가 살고 있는 이 곳이 훨~씬<br>\n" +
+            "                        살기 좋아집니다 제가 장담할게요!<br>\n" +
+            "                        모르는 게 많다는 건 배울 게 무궁무진하다는 것 !<br>\n" +
+            "                        배움을 기꺼이 받아들이는 당신, 제법 멋져요^^b\n" +
+            "                        </b>\n" +
+            "                    </h5>";
+
+        let comm_txt2 = "<hr class= \"style-four\" id=\"hr-img1\">" +
+            "<h5 style=\"text-align: center;\" id=\"comm-txt\">\n" +
+            "                        <b>\n" +
+            "                        곁눈질로 배운 분리배출..\n <br>\n" +
+            "                        어디서 봤는데.. 이렇게 하는 거 맞겠지..? 🤷‍♀️🤷‍♂️\n<br>\n" +
+            "                        이것저것 헷갈리는 것투성이죠 😥<br>\n" +
+            "                        분리배출을 해야한다는 마음가짐이면 충분합니다!<br>\n" +
+            "                        곁눈질 STOP! 본격적으로 분리배출에 대해 공부한다면\n<br>\n" +
+            "                        머지 않아 분리배출의 고수가 되어 <br>\n" +
+            "                        지구를 지키는 수호자가 될 거 예요<br>\n" +
+            "                        지구는 아니어도 우리 집은 지킬 줄 아는 사람이 되어야겠죠? ☺\n<br>\n" +
+            "                        레벨업을 위해 아자아자 ! ♥\n" +
+            "                        </b>\n" +
+            "                    </h5>";
+
+        let comm_txt3 = "<hr class= \"style-four\" id=\"hr-img1\">" +
+            "<h5 style=\"text-align: center;\" id=\"comm-txt\">\n" +
+            "                        <b>\n" +
+            "                        내가 두는 훈수는 지구를 위한 일 ! <br>\n" +
+            "                        그렇게 하는 거 아니야~ 이리 줘! 🙋‍♀️🙋‍♂️<br>\n" +
+            "                        친구끼리 밥 먹고 난 뒤, 마구잡이로 뒤처리하는 모습을 보고<br>\n" +
+            "                        차라리 내가 하겠다며 나서진 않나요?<br>\n" +
+            "                        이것저것 잘 따져가며 분리배출에 노력하지만<br>\n" +
+            "                        문제를 풀면서 오잉? 하셨을 당신 !<br>\n" +
+            "                        충분히 잘 해오고 있었기때문에 이런 작은 디테일만 더 챙겨준다면<br>\n" +
+            "                        분리배출 고수 완/전/가/능 %%<br>\n" +
+            "                        그 날을 위해 오늘도 아자아자 ♥\n" +
+            "                        </b>\n" +
+            "                    </h5>";
+
+        let comm_txt4 = "<hr class= \"style-four\" id=\"hr-img1\">" +
+            "<h5 style=\"text-align: center;\" id=\"comm-txt\">\n" +
+            "                        <b>\n" +
+            "                        척척박사로는 부족해..♥ <br>\n" +
+            "                        이건 유리! 이건 플라스틱! 이건 일반 쓰레기!\n 🙆‍♂️🙆‍♀️\n<br>\n" +
+            "                        걸어다니는 검색창 아니신가요 !!\n<br>\n" +
+            "                        헷갈릴 법한 것들로 추린 문제를 모두 맞춘 당신은.. <br>\n" +
+            "                        앞으로도 꾸준히 그 발걸음 이어가주세요 ..♥<br>\n" +
+            "                        10명 중 나 하나쯤이야,, 라고 생각하는 분들께<br>\n" +
+            "                        나까지 100명!이란 생각으로 바뀔 수 있도록!<br>\n" +
+            "                        보이지 않는 곳에서, 또 보이는 곳에서 당신의 실력을<br>\n" +
+            "                        맘껏! 보여주세요 :)<br>\n" +
+            "                        정말 대단하고 감사합니다 (—)(__) - 지구 올림\n" +
+            "                        </b>\n" +
+            "                    </h5>";
 
         /* 로딩 후 모달 불러오기 */
         /* https://alpreah.tistory.com/82 */
         $(document).ready(function () {
             // Handler for .ready() called.
-
-            console.log(window.innerHeight);
-
-            console.log($('#container').height());
 
             /* 최종 정답 개수 localstorage에서 가져오기 */
             let totalCount = 0;
@@ -128,72 +203,65 @@
             /* 모달에 정답 갯수 넣어주기 */
             $('#cnt').html(totalCount);
             /* 모달 생성 */
-            $('#exampleModalCenter').modal("show");
+            /* $('#exampleModalCenter').modal("show"); */
 
             /* totalCount 결과에 따라 출력문구 변경 */
+            /* hr 이미지 변경 */
             if (totalCount <= 3) {
-                /*$('#resultImage').append('<img src="../static/img_2/1.jpg" class="img-resize" alt="">');*/
-                $('#resultMessage').append('<h1 style="text-align: center"> 지구야 미안해 ㅠㅠ</h1>' +
-                    '<p> Lv.1 재활용..되는 거 맞겠지..? <br>마구잡이로 배출한 당신! 🤦‍♂️🤦‍♀️ 쓴 소리 당첨입니다! <br>당장은 나 하나쯤은.. 하겠지만 몸소 느껴지는 날이 분명 다가와요!!<br> 방금 풀어본 10 문제만이라도 지켜주신다면 우리 지구가, 내가 살고 있는 이 곳이 훨씬 살기 좋아집니다 제가 장담할게요!</p>');
+                $('#frame-box').append('<img src="../static/img_2/1.png" class="status-img" alt="">');
+                $('#title-txt').append('<h1>지구야 미안해 ㅠ ㅠ</h1>');
+                $('#comment-box').append(comm_txt1);
+                $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                $('#hr-img1').css({"background":"url(../static/img_2/seed.png) no-repeat top center"});
+                $('#hr-img2').css({"background":"url(../static/img_2/seed.png) no-repeat top center"});
+
             } else if (totalCount >= 4 && totalCount < 7) {
-                $('#resultImage').append('<img src="../static/img_2/2.jpg" class="img-resize" style="width: 100%" alt="">');
-                $('#resultMessage').append('<h1 style="text-align: center"> 대충 .. 이렇게 하면 되겠지..?</h1>' +
-                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+                $('#frame-box').append('<img src="../static/img_2/2.png" class="status-img" alt="">');
+                $('#title-txt').append('<h1>대충..이렇게 하면 되겠지..?</h1>');
+                $('#comment-box').append(comm_txt2);
+                $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                $('#hr-img1').css({"background":"url(../static/img_2/leaf.png) no-repeat top center"});
+                $('#hr-img2').css({"background":"url(../static/img_2/leaf.png) no-repeat top center"});
             } else if (totalCount >= 7 && totalCount < 9) {
-                $('#resultImage').append('<img src="../static/img_2/3.jpg" class="img-resize" style="width: 100%" alt="">');
-                $('#resultMessage').append('<h1 style="text-align: center"> 마스터까지 단 한 발짝!</h1>' +
-                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+                $('#frame-box').append('<img src="../static/img_2/3.png" class="status-img" alt="">');
+                $('#title-txt').append('<h1>마스터까지 단 한 발짝!</h1>');
+                $('#comment-box').append(comm_txt3);
+                $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                $('#hr-img1').css({"background":"url(../static/img_2/buds.png) no-repeat top center"});
+                $('#hr-img2').css({"background":"url(../static/img_2/buds.png) no-repeat top center"});
             } else {
-                $('#resultImage').append('<img src="../static/img_2/4.jpg" class="img-resize" style="width: 100%" alt="">');
-                $('#resultMessage').append('<h1 style="text-align: center"> 당신은 분리수거 마스터!! </h1>' +
-                '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+                $('#frame-box').append('<img src="../static/img_2/4.png" class="status-img" alt="">');
+                $('#title-txt').append('<h1>당신은 분리수거 마스터!!</h1>');
+                $('#comment-box').append(comm_txt4);
+                $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                $('#hr-img1').css({"background":"url(../static/img_2/flower.png) no-repeat top center"});
+                $('#hr-img2').css({"background":"url(../static/img_2/flower.png) no-repeat top center"});
             }
         });
     </script>
 </head>
 
 <body>
-    <div>
-        <!-- Bootstrap Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">분리수거 테스트</h5>
-                    </div>
-                    <div class="modal-body">
-                        <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn modal-btn-set" data-dismiss="modal">
-                            <img src="../static/img_2/modal_btn.png" alt=""></button>
-                    </div>
-                </div>
+    <div class="container-fluid pt-4">
+        <div class="wrap">
+        <div class="row frame" id="frame-box">
+            <!-- Result Status Img -->
+        </div>
+        <div class="row pt-4">
+            <div class="title" id="title-txt">
+                <!-- Result Title -->
             </div>
         </div>
-
-        <!-- Result -->
-        <div class="container pt-4">
-            <div class="row">
-                <div style="background-color: #FFFFFF; margin: auto; width: 300px; height: 300px; border-radius: 50%; border: 4px solid green">
-                    <!-- Image 출력 -->
-                    <img src="../static/img_2/1.png" class="img-resize" alt="">
-                </div>
-            </div>
-            <div class="col col-xs">
-                <div class="message" id="resultMessage">
-                    <!-- Text 출력 -->
-                </div>
-            </div>
-            <div class="col col-xs pb-4 text-center">
-                <button type="button" class="btn btn-primary btn-lg result-btn-set"> 공유하기</button>
-            </div>
-            <div class="col col-xs pb-4 text-center">
-                <button type="button" class="btn btn-primary btn-lg result-btn-set"> 레벨업하기</button>
+        <div class="row">
+            <div class="comment" id="comment-box">
+                <!-- Result Comment -->
             </div>
         </div>
+        <div class="row mb-2">
+                <button type="button" class="btn btn-primary btn-lg mr-4" style="width: 25%; margin: auto;">공유하기</button>
+                <button type="button" class="btn btn-primary btn-lg ml-4" style="width: 25%; margin: auto;">레벨업</button>
+        </div>
+            </div>
     </div>
 </body>
-
 </html>
