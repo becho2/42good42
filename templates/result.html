@@ -21,6 +21,7 @@
         crossorigin="anonymous"></script>
 
     <title>분리수거 테스트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <!--
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,91 +29,49 @@
     -->
 
     <style>
-        header {
-            height: 30px;
-        }
-
-        .container {
-            width: 600px;
-
-            margin: 0 auto;
-
-            border: 1px solid mediumseagreen;
-        }
-
-        .modal-btn-set {
-            border-radius: 50%;
-            background: transparent;
-
-            display: block;
-            text-align: center;
-        }
-
-        .img-resize {
-            height: 400px;
-        }
-
-        .result-btn-set {
-            width: 50%;
-        }
-
-        /*
-        ##Device = Desktops
-        ##Screen = 1281px to higher resolution desktops
-        ##Device = 데스크탑
-        ##Screen = 1281px 이상 해상도 데스크탑
-        */
-        @media (min-width: 1281px) {
-
-
-        }
-
-        /*
-        ##Device = Laptops, Desktops
-        ##Screen = B/w 1025px to 1280px
-        ##Device = 랩탑, 데스크탑
-        ##Screen = 1025px에서 1280px 사이
-        */
-
-        @media (min-width: 1025px) and (max-width: 1280px) {
-
-
-        }
-
-        /*
-        ##Device = Tablets, Ipads (portrait),
-        ##Screen = B/w 768px to 1024px
-        ##Device = 태블릿, 아이패드(세로),
-        ##Screen = 768px에서 1024px 사이
-        */
-
-        @media (min-width: 768px) and (max-width: 1024px) {
-
-
-        }
-
-        /*
-        ##Device = Tablets, Ipads (landscape)
-        ##Screen = B/w 768px to 1024px
-        ##Device = 태블릿, 아이패드(가로)
-        ##Screen = 768px에서 1024px 사이
-        */
-
-        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-
-        }
-
         /*
         ##Device = Low Resolution Tablets, Mobiles (Landscape)
         ##Screen = B/w 481px to 767px
-        ##Device = 저해상도 태블릿, 모바일(가로)
-        ##Screen = 481px에서 767px 사이
+        ##Device = PC
+        ##Screen = 481px 이상 해상도
         */
 
-        @media (min-width: 481px) and (max-width: 767px) {
+        @media (min-width: 481px) {
+            .container {
+                width: 600px;
 
+                margin: 0 auto;
 
+                background-image: url("../static/img_2/Untitled-1.jpg");
+                background-size: cover;
+            }
+
+            .modal-btn-set {
+                border-radius: 50%;
+                background: transparent;
+
+                display: block;
+                text-align: center;
+            }
+
+            .message {
+                padding-top: 20px;
+                color: #FFFFFF;
+            }
+
+            .img-resize {
+                width: 60%;
+
+                display : block;
+                margin : auto;
+            }
+
+            .result-btn-set {
+                width: 50%;
+
+                background-color: green;
+                border: none;
+            }
         }
 
         /*
@@ -124,11 +83,25 @@
 
         @media (min-width: 320px) and (max-width: 480px) {
             .container {
-                width: 360px;
+                width: 100%;
+
+                background-image: url("../static/img_2/Untitled-1.jpg");
+                background-size: cover;
             }
 
             .img-resize {
-                height: 250px;
+                width: 100%;
+            }
+
+             .message {
+                font-size: 0.7rem;
+            }
+
+            .result-btn-set {
+                width: 50%;
+
+                background-color: green;
+                border: none;
             }
         }
 
@@ -140,6 +113,8 @@
         /* https://alpreah.tistory.com/82 */
         $(document).ready(function () {
             // Handler for .ready() called.
+
+            console.log(window.innerHeight);
 
             /* 최종 정답 개수 localstorage에서 가져오기 */
             let totalCount = 0;
@@ -153,9 +128,9 @@
 
             /* totalCount 결과에 따라 출력문구 변경 */
             if (totalCount <= 3) {
-                $('#resultImage').append('<img src="../static/img_2/1.jpg" class="img-resize" style="width: 100%" alt="">');
+                /*$('#resultImage').append('<img src="../static/img_2/1.jpg" class="img-resize" alt="">');*/
                 $('#resultMessage').append('<h1 style="text-align: center"> 지구야 미안해 ㅠㅠ</h1>' +
-                    '<p> 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!! 지구야 미안하다!!</p>');
+                    '<p> Lv.1 재활용..되는 거 맞겠지..? <br>마구잡이로 배출한 당신! 🤦‍♂️🤦‍♀️ 쓴 소리 당첨입니다! <br>당장은 나 하나쯤은.. 하겠지만 몸소 느껴지는 날이 분명 다가와요!!<br> 방금 풀어본 10 문제만이라도 지켜주신다면 우리 지구가, 내가 살고 있는 이 곳이 훨씬 살기 좋아집니다 제가 장담할게요!</p>');
             } else if (totalCount >= 4 && totalCount < 7) {
                 $('#resultImage').append('<img src="../static/img_2/2.jpg" class="img-resize" style="width: 100%" alt="">');
                 $('#resultMessage').append('<h1 style="text-align: center"> 대충 .. 이렇게 하면 되겠지..?</h1>' +
@@ -195,14 +170,15 @@
         </div>
 
         <!-- Result -->
-        <header class="header"></header>
-
         <div class="container pt-4">
-            <div class="col col-xs" id="resultImage">
-                <!-- Image 출력 -->
+            <div class="row">
+                <div style="background-color: #FFFFFF; margin: auto; width: 300px; height: 300px; border-radius: 50%; border: 3px solid green">
+                    <!-- Image 출력 -->
+                    <img src="../static/img_2/1.jpg" class="img-resize" alt="">
+                </div>
             </div>
             <div class="col col-xs">
-                <div id="resultMessage">
+                <div class="message" id="resultMessage">
                     <!-- Text 출력 -->
                 </div>
             </div>

@@ -4,7 +4,11 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <!-- 모바일에서 좌우로 스크롤이 생기는 현상을 막기 위해 추가한 meta태그, 기존과 겹쳐서 기존 건 주석처리 - 진회 -->
+    <!-- 출처: https://yongddugi.tistory.com/6-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -27,12 +31,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
 
     <style>
+
+        body {
+            width: 100%;
+            background-color: #fff9e2;
+        }
+
         * {
             font-family: 'Gaegu', cursive;
         }
 
         .item-img {
-            width: 600px;
+            width: 100%;
             height: 400px;
 
             background-image: url("../static/img_2/quiz.jpg");
@@ -83,7 +93,7 @@
             height: 950px;
             margin: auto;
             text-align: center;
-            background-color: #fff4c8;
+            {#background-color: #fff4c8;#}
         }
 
         .btn-order>span {
@@ -107,6 +117,8 @@
 
         .btn-danger {}
 
+
+
         /*#answer-check {*/
         /*    display: none;*/
         /*    width: 300px;*/
@@ -123,6 +135,7 @@
         /*}*/
 
         /* 모달창 CSS 시작 */
+        /* 출처: http://yoonbumtae.com/?p=3632 */
         #modal.modal-overlay {
             display: none;
             width: 100%;
@@ -167,14 +180,14 @@
             display: inline;
         }
 
-        #modal .close-area {
+        /* #modal .close-area {
             display: inline;
             float: right;
             padding-right: 10px;
             cursor: pointer;
             text-shadow: 1px 1px 2px gray;
             color: white;
-        }
+        } */
 
         #modal .content {
             margin-top: 20px;
@@ -184,7 +197,59 @@
         }
 
         /* 모달창 CSS 끝 */
+
+        /* 미디어 쿼리 - 모바일 환경 시작*/
+        @media (max-width: 480px) {
+
+
+            .wrap {
+                width: 100%;
+                height: 900px;
+            }
+
+
+            .item-desc {
+                width: 100%;
+                /* margin-top: 20px;
+                margin-bottom: 20px; */
+            }
+
+            .item-desc>p {
+                font-size: 50px;
+            }
+
+            .item-btn {
+                width: 100%;
+            }
+
+            .btn-order {
+                margin: auto;
+                width: 125px;
+                height: 125px;
+                display: inline;
+                font-size: 100px;
+                text-align: center;
+            }
+
+            .btn-order>span {
+                width: 112px;
+                height: 50px;
+                line-height: 50px;
+                display: block;
+                text-align: center;
+            }
+
+            #modal .modal-window {
+
+                width: 90%;
+                height: 400px;
+                padding: 0px;
+            }
+        }
+
+        /* 미디어 쿼리 - 모바일 환경 끝 */
     </style>
+
     <script>
         /**
          * @author 김진회
@@ -201,6 +266,7 @@
         let temp_quiz = '';
         let temp_cate = '';
         let temp_check = '';
+        let koQuizno = '';
 
         $(document).ready(function () {
             localStorage.clear();
@@ -223,7 +289,7 @@
                     "seq": no,
                 },
                 success: function (response) {
-                    console.log(response.quiz);
+                    // console.log(response.quiz);
                     quiz = response.quiz['content']
                     category = response.quiz['category']
                     correctAnswer = response.quiz['answer']
@@ -233,6 +299,7 @@
                     temp_cate = `${category}`
                     $('#quiz').html(temp_quiz);
                     $('#category').html(temp_cate);
+                    numberOfQuiz(quizno);
                 }
             })
             //현재 풀고 있는 문제 번호를 +1해서 저장
@@ -300,7 +367,49 @@
             $('#description').append(temp_des);
         }
 
+        /**
+         * @brief 지금 풀고 있는 퀴즈번호를 한글로 보여주기 (몇 번째)
+         * @param {string} no 지금 세팅하는 퀴즈번호 
+         * @returns {} 
+         * @author 김진회
+         * @date 21.08.27
+         */
+        function numberOfQuiz(no) {
+            switch (no) {
+                case "1":
+                    koQuizno = '첫';
+                    break;
+                case "2":
+                    koQuizno = '두';
+                    break;
+                case "3":
+                    koQuizno = '세';
+                    break;
+                case "4":
+                    koQuizno = '네';
+                    break;
+                case "5":
+                    koQuizno = '다섯';
+                    break;
+                case "6":
+                    koQuizno = '여섯';
+                    break;
+                case "7":
+                    koQuizno = '일곱';
+                    break;
+                case "8":
+                    koQuizno = '여덟';
+                    break;
+                case "9":
+                    koQuizno = '아홉';
+                    break;
+                case "10":
+                    koQuizno = '열';
+                    break;
+            }
 
+            $('#number-of-quiz').html(koQuizno);
+        }
     </script>
 
 </head>
@@ -315,7 +424,8 @@
         <div class="item-img">
         </div>
         <div class="item-desc">
-            <h1>첫 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span></h1>
+            <h1><span id="number-of-quiz">첫</span> 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span>
+            </h1>
             <p id="quiz">
                 요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
             </p>
@@ -336,9 +446,9 @@
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
             <div class="title">
-                <h2>해설</h2>
+                <h2>정답은?</h2>
             </div>
-            <div class="close-area">X</div>
+            <!-- <div class="close-area">X</div> -->
 
             <div class="content" id="description">
                 <p>가나다라마바사 아자차카타파하</p>
@@ -350,12 +460,26 @@
             <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
-    <script>
-        // const loremIpsum = document.getElementById("lorem-ipsum")
-        // fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-        //     .then(response => response.text())
-        //     .then(result => loremIpsum.innerHTML = result)
-    </script>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">분리수거 테스트</h5>
+                </div>
+                <div class="modal-body">
+                    <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-btn-set" data-dismiss="modal">
+                        <img src="../static/img_2/modal_btn.png" alt=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
