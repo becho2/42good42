@@ -41,6 +41,14 @@
             font-family: 'Gaegu', cursive;
         }
 
+        .wrap {
+            width: 600px;
+            height: 950px;
+            margin: auto;
+            text-align: center;
+            {#background-color: #fff4c8;#}
+        }
+
         .item-img {
             width: 100%;
             height: 400px;
@@ -88,13 +96,7 @@
             text-align: center;
         }
 
-        .wrap {
-            width: 600px;
-            height: 950px;
-            margin: auto;
-            text-align: center;
-            {#background-color: #fff4c8;#}
-        }
+
 
         .btn-order>span {
             width: 225px;
@@ -166,6 +168,7 @@
             position: relative;
             top: -100px;
             padding: 10px;
+            text-align: center;
         }
 
         #modal .title {
@@ -178,9 +181,11 @@
 
         #modal .title h2 {
             display: inline;
+            font-size: 40px;
+
         }
 
-        /* #modal .close-area {
+
             display: inline;
             float: right;
             padding-right: 10px;
@@ -191,9 +196,13 @@
 
         #modal .content {
             margin-top: 20px;
-            padding: 0px 10px;
+            padding: 10px;
             text-shadow: 1px 1px 2px gray;
             color: white;
+        }
+
+        #modal {
+
         }
 
         /* 모달창 CSS 끝 */
@@ -204,7 +213,12 @@
 
             .wrap {
                 width: 100%;
-                height: 900px;
+                height: 700px;
+            }
+
+            .item-img {
+                width: 480px;
+                height: 300px;
             }
 
 
@@ -214,8 +228,17 @@
                 margin-bottom: 20px; */
             }
 
+            .item-desc > h1 {
+                padding-left: 10px;
+            }
+
+            .item-desc .category {
+
+            }
+
             .item-desc>p {
-                font-size: 50px;
+                padding: 20px;
+                font-size: 35px;
             }
 
             .item-btn {
@@ -223,12 +246,13 @@
             }
 
             .btn-order {
-                margin: auto;
-                width: 125px;
-                height: 125px;
+                margin: 20px;
+                width: 150px;
+                height: 150px;
                 display: inline;
-                font-size: 100px;
+                font-size: 150px;
                 text-align: center;
+                padding-left: 20px;
             }
 
             .btn-order>span {
