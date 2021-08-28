@@ -8,7 +8,7 @@ app.config['SECRET_KEY'] = '123456790'
 
 # Set mongo db
 conn = MongoClient()
-#conn = MongoClient('mongodb://test:test@localhost', 27017)
+conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
 
