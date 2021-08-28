@@ -31,7 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
 
     <style>
-
         body {
             width: 100%;
             background-color: #fff9e2;
@@ -46,16 +45,23 @@
             height: 950px;
             margin: auto;
             text-align: center;
-            {#background-color: #fff4c8;#}
+            /* background-color: #fff4c8; */
         }
 
-        .item-img {
+        /* .item-img {
             width: 100%;
             height: 400px;
 
             background-image: url("../static/img_2/quiz_pc.png");
             background-position: center;
             background-size: cover;
+        } */
+        .item-img-container {
+            width: 100%;
+        }
+
+        .item-img {
+            width: 100%;
         }
 
         .item-desc {
@@ -64,7 +70,7 @@
             margin-bottom: 20px;
         }
 
-        .item-desc > h1 {
+        .item-desc>h1 {
             font-weight: bold;
             font-size: 50px;
 
@@ -127,23 +133,6 @@
             background-color: #444;
             color: #FFF;
         }
-
-
-
-        /*#answer-check {*/
-        /*    display: none;*/
-        /*    width: 300px;*/
-        /*    padding: 20px 60px;*/
-        /*    background-color: #fefefe;*/
-        /*    border: 1px solid #888;*/
-        /*    border-radius: 3px;*/
-        /*}*/
-
-        /*#answer-check .btn-next {*/
-        /*    position: absolute;*/
-        /*    top: 10px;*/
-        /*    right: 10px;*/
-        /*}*/
 
         /* 모달창 CSS 시작 */
         /* 출처: http://yoonbumtae.com/?p=3632 */
@@ -216,23 +205,28 @@
             margin-top: 20px;
         }
 
+        .modal-window #btn-next {
+            font-size: 25px;
+        }
+
         /* 모달창 CSS 끝 */
 
         /* 미디어 쿼리 - 모바일 환경 시작*/
         @media (max-width: 480px) {
 
-
             .wrap {
                 width: 100%;
-                height: 700px;
+                height: 100%;
             }
 
-            .item-img {
-                width: 100%;
-                height: 300px;
+            /* .item-img {
                 background-image: url("../static/img_2/quiz_m.png");
+                background-size: cover;
+                width: 100%;
+            } */
+            .item-img {
+                width: 80%;
             }
-
 
             .item-desc {
                 width: 100%;
@@ -240,17 +234,16 @@
                 margin-bottom: 20px; */
             }
 
-            .item-desc > h1 {
+            .item-desc>h1 {
                 padding-left: 10px;
             }
 
-            .item-desc .category {
-
-            }
+            .item-desc .category {}
 
             .item-desc>p {
-                padding: 20px;
-                font-size: 35px;
+                padding: 5px;
+                font-size: 23px;
+                font-weight: bold;
             }
 
             .item-btn {
@@ -259,13 +252,13 @@
             }
 
             .btn-order {
-                margin: 20px;
+                margin: 0px;
                 width: 150px;
                 height: 150px;
                 display: inline;
                 font-size: 150px;
                 text-align: center;
-                padding-left: 0px;
+                padding-left: 20px;
             }
 
             .btn-order>span {
@@ -281,6 +274,51 @@
                 width: 90%;
                 height: 400px;
                 padding: 0px;
+            }
+
+            #modal.modal-overlay {
+                display: none;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                backdrop-filter: blur(1.5px);
+                -webkit-backdrop-filter: blur(1.5px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+
+            #modal .title {
+                padding-left: 10px;
+                display: inline;
+                text-shadow: 1px 1px 2px gray;
+                color: white;
+            }
+
+            #modal .title h2 {
+                display: inline;
+                font-size: 30px;
+            }
+
+            #description {
+                font-size: 20px;
+            }
+
+            .modal-window #btn-next {
+                font-size: 15px;
+            }
+
+            #modal .modal-window {
+                width: 90%;
+                height: 530px;
+                position: relative;
+                top: 0px;
             }
         }
 
@@ -304,11 +342,36 @@
         let temp_cate = '';
         let temp_check = '';
         let koQuizno = '';
+        let filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
 
         $(document).ready(function () {
             localStorage.clear();
             setQuiz();
+            setHtmlByDevice();
         });
+
+
+        /**
+         * @brief pc로 접속했느냐 폰으로 접속했느냐에 따라 html을 다르게 보여주기 위한 함수
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.28
+         */
+        function setHtmlByDevice() {
+            //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
+            if (navigator.platform) {
+                if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+                    /* 모바일에서 접속하셨습니다 */
+                    $('#cate-br').html("<br />");
+                    // alert("모바일");
+                } else {
+                    $('#cate-br').html("&nbsp;");
+                }
+            }
+
+        }
+
 
         /**
          * @brief 현재 순서에 맞게 퀴즈를 세팅합니다.(ajax)
@@ -452,16 +515,14 @@
 </head>
 
 <body>
-    <!--<div id="answer-check">-->
-    <!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
-    <!--    voluptatum ex reiciendis aut in incidunt?-->
-    <!--    <a class="modal_close_btn">닫기</a>-->
-    <!--</div>-->
     <div class="wrap">
-        <div class="item-img">
+        <div class="item-img-container">
+            <img class="item-img" src="../static/img_2/quiz_pc.png">
         </div>
         <div class="item-desc">
-            <h1><span id="number-of-quiz">첫</span> 번째 문제! &nbsp; <span class="category" id="category">음식물 쓰레기</span>
+            <h1>
+                <span id="number-of-quiz">첫</span> 번째 문제!<span id="cate-br"></span>
+                <span class="category" id="category">음식물 쓰레기</span>
             </h1>
             <p id="quiz">
                 요리에 쓰이는 된장, 고추장은 음식물 쓰레기통으로 !
@@ -472,28 +533,17 @@
             <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
             <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
         </div>
-
-
-
-    </div>
-    <!--    <div id="container">-->
-    <!--        <h2>Lorem Ipsum</h2>-->
-    <!--        <div id="lorem-ipsum"></div>-->
-    <!--    </div>-->
-    <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-            <div class="title">
-                <h2>정답은?</h2>
+        <div id="modal" class="modal-overlay">
+            <div class="modal-window">
+                <div class="title">
+                    <h2>정답은?</h2>
+                </div>
+                <div class="content" id="description"></div>
+                <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음
+                        문제로</span></button>
             </div>
-            <!-- <div class="close-area">X</div> -->
-
-            <div class="content" id="description">
-
-            </div>
-            <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
-
 </body>
 
 </html>
