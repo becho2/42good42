@@ -53,20 +53,21 @@
             width: 100%;
             height: 400px;
 
-            background-image: url("../static/img_2/quiz.jpg");
+            background-image: url("../static/img_2/quiz_pc.png");
             background-position: center;
             background-size: cover;
         }
 
         .item-desc {
             width: 600px;
-            margin-top: 20px;
+            margin-top: 10px;
             margin-bottom: 20px;
         }
 
         .item-desc > h1 {
             font-weight: bold;
             font-size: 50px;
+
         }
 
         .item-desc>p {
@@ -97,7 +98,6 @@
         }
 
 
-
         .btn-order>span {
             width: 225px;
             height: 100px;
@@ -113,11 +113,20 @@
         .btn-primary:hover,
         .btn-primary:focus {
             border-color: #6fb03a;
-            background-color: #333333;
+            background-color: #444;
             color: #FFF;
         }
 
-        .btn-danger {}
+        .btn-danger {
+            background-color: #ff4648;
+        }
+
+        .btn-danger:hover,
+        .btn-danger:focus {
+            border-color: #6fb03a;
+            background-color: #444;
+            color: #FFF;
+        }
 
 
 
@@ -163,10 +172,10 @@
             -webkit-backdrop-filter: blur(13.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            width: 400px;
-            height: 500px;
+            width: 500px;
+            height: 700px;
             position: relative;
-            top: -100px;
+            top: 0px;
             padding: 10px;
             text-align: center;
         }
@@ -176,13 +185,15 @@
             display: inline;
             text-shadow: 1px 1px 2px gray;
             color: white;
-
         }
 
         #modal .title h2 {
             display: inline;
-            font-size: 40px;
+            font-size: 60px;
+        }
 
+        #description {
+            font-size: 30px;
         }
 
         /* #modal .close-area {
@@ -201,8 +212,8 @@
             color: white;
         }
 
-        #modal {
-
+        .modal-window .btn {
+            margin-top: 20px;
         }
 
         /* 모달창 CSS 끝 */
@@ -217,8 +228,9 @@
             }
 
             .item-img {
-                width: 480px;
+                width: 100%;
                 height: 300px;
+                background-image: url("../static/img_2/quiz_m.png");
             }
 
 
@@ -243,6 +255,7 @@
 
             .item-btn {
                 width: 100%;
+                cursor: pointer;
             }
 
             .btn-order {
@@ -252,7 +265,7 @@
                 display: inline;
                 font-size: 150px;
                 text-align: center;
-                padding-left: 20px;
+                padding-left: 0px;
             }
 
             .btn-order>span {
@@ -344,12 +357,12 @@
             if (selectedAnswer === correctAnswer) {
                 countCorrect++;
                 // 모달창에 정답입니다! 문구와 description을 넣어 띄우기
-                temp_check = `정답입니다! <br/>`;
+                temp_check = `정답입니다! <br/><br>`;
                 $('#description').html(temp_check);
                 modalOn()
             } else {
                 // 모달창에 아쉽네요! 문구와 함께 descrirption을 넣어 띄우기
-                temp_check = `아쉽지만 오답이에요! <br/>`;
+                temp_check = `아쉽지만 오답이에요! <br/><br>`;
                 $('#description').html(temp_check);
                 modalOn()
             }
@@ -475,35 +488,11 @@
             <!-- <div class="close-area">X</div> -->
 
             <div class="content" id="description">
-                <p>가나다라마바사 아자차카타파하</p>
-                <p>가나다라마바사 아자차카타파하</p>
-                <p>가나다라마바사 아자차카타파하</p>
-                <p>가나다라마바사 아자차카타파하</p>
 
             </div>
             <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
-
-    <!-- Bootstrap Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">분리수거 테스트</h5>
-                </div>
-                <div class="modal-body">
-                    <p>당신은 총 <span id="cnt"></span> 개의 문제를 맞혔습니다.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn modal-btn-set" data-dismiss="modal">
-                        <img src="../static/img_2/modal_btn.png" alt=""></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 </body>
 
