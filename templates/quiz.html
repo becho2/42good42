@@ -340,6 +340,13 @@
                     temp_quiz = `${quiz}`
                     temp_cate = `${category}`
                     $('#quiz').html(temp_quiz);
+                    //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
+                    if (navigator.platform) {
+                        if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+                            /* 모바일에서 접속하셨습니다 */
+                            $('#cate-br').html("<br />");
+                        }
+                    }
                     $('#category').html(temp_cate);
                     numberOfQuiz(quizno);
                 }
@@ -467,7 +474,7 @@
         </div>
         <div class="item-desc">
             <h1>
-                <span id="number-of-quiz">첫</span> 번째 문제! &nbsp;<br />
+                <span id="number-of-quiz">첫</span> 번째 문제! &nbsp;<span id="cate-br"></span>
                 <span class="category" id="category">음식물 쓰레기</span>
             </h1>
             <p id="quiz">
