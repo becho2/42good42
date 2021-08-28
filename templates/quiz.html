@@ -252,9 +252,7 @@
                 padding-left: 10px;
             }
 
-            .item-desc .category {
-
-            }
+            .item-desc .category {}
 
             .item-desc>p {
                 padding: 5px;
@@ -292,28 +290,28 @@
             }
 
             #modal.modal-overlay {
-            display: none;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(1.5px);
-            -webkit-backdrop-filter: blur(1.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+                display: none;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                backdrop-filter: blur(1.5px);
+                -webkit-backdrop-filter: blur(1.5px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
             }
 
             #modal .title {
-            padding-left: 10px;
-            display: inline;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
+                padding-left: 10px;
+                display: inline;
+                text-shadow: 1px 1px 2px gray;
+                color: white;
             }
 
             #modal .title h2 {
@@ -326,7 +324,7 @@
             }
 
             .modal-window #btn-next {
-            font-size: 15px;
+                font-size: 15px;
             }
 
             #modal .modal-window {
@@ -360,7 +358,31 @@
         $(document).ready(function () {
             localStorage.clear();
             setQuiz();
+            setHtmlByDevice();
         });
+
+
+        /**
+         * @brief pc로 접속했느냐 폰으로 접속했느냐에 따라 html을 다르게 보여주기 위한 함수
+         * @param {}
+         * @returns {}
+         * @author 김진회
+         * @date 21.08.28
+         */
+        function setHtmlByDevice() {
+            //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
+            if (navigator.platform) {
+                if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+                    /* 모바일에서 접속하셨습니다 */
+                    $('#cate-br').html("<br />");
+                    // alert("모바일");
+                } else {
+                    $('#cate-br').html("&nbsp;");
+                }
+            }
+
+        }
+
 
         /**
          * @brief 현재 순서에 맞게 퀴즈를 세팅합니다.(ajax)
@@ -387,16 +409,6 @@
                     temp_quiz = `${quiz}`
                     temp_cate = `${category}`
                     $('#quiz').html(temp_quiz);
-                    //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
-                    if (navigator.platform) {
-                        if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-                            /* 모바일에서 접속하셨습니다 */
-                            $('#cate-br').html("<br />");
-                            // alert("모바일");
-                        } else {
-                            $('#cate-br').html("&nbsp;");
-                        }
-                    }
                     $('#category').html(temp_cate);
                     numberOfQuiz(quizno);
                 }
