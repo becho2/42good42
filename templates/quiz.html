@@ -527,11 +527,6 @@
 </head>
 
 <body>
-    <!--<div id="answer-check">-->
-    <!--    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolore eveniet laborum repellat sit distinctio, ipsa rem dicta alias velit? Repellat doloribus mollitia dolorem-->
-    <!--    voluptatum ex reiciendis aut in incidunt?-->
-    <!--    <a class="modal_close_btn">닫기</a>-->
-    <!--</div>-->
     <div class="wrap">
         <div class="item-img">
         </div>
@@ -549,28 +544,17 @@
             <button type="button" onclick="selectAnswer('O')" class="btn btn-primary btn-order"><span>O</span></button>
             <button type="button" onclick="selectAnswer('X')" class="btn btn-danger btn-order"><span>X</span></button>
         </div>
-
-
-
-    </div>
-    <!--    <div id="container">-->
-    <!--        <h2>Lorem Ipsum</h2>-->
-    <!--        <div id="lorem-ipsum"></div>-->
-    <!--    </div>-->
-    <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-            <div class="title">
-                <h2>정답은?</h2>
+        <div id="modal" class="modal-overlay">
+            <div class="modal-window">
+                <div class="title">
+                    <h2>정답은?</h2>
+                </div>
+                <div class="content" id="description"></div>
+                <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음
+                        문제로</span></button>
             </div>
-            <!-- <div class="close-area">X</div> -->
-
-            <div class="content" id="description">
-
-            </div>
-            <button type="button" onclick="next()" class="btn btn-success"><span id="btn-next">다음 문제로</span></button>
         </div>
     </div>
-
 </body>
 
 </html>
