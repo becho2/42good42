@@ -309,6 +309,7 @@
         let temp_cate = '';
         let temp_check = '';
         let koQuizno = '';
+        let filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
 
         $(document).ready(function () {
             localStorage.clear();
@@ -345,7 +346,7 @@
                         if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
                             /* 모바일에서 접속하셨습니다 */
                             $('#cate-br').html("<br />");
-                            alert("모바일");
+                            // alert("모바일");
                         }
                     }
                     $('#category').html(temp_cate);
