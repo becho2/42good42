@@ -25,6 +25,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/modal-style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
 
     <style>
@@ -287,7 +289,22 @@
             $('#cnt').html(totalCount);
             /* 모달 생성 */
             /* $('#exampleModalCenter').modal("show"); */
+            $('.modal').modal("show");
 
+             if (totalCount <= 3) {
+                 $('#top-img').attr("src", "../static/img_2/seed.png");
+                 /* $('#bottom-txt').text("레벨1, 씨앗 등급입니다."); */
+                 $('#bottom-txt').append("레벨1, <span style=\"color: saddlebrown; font-weight: bold\">씨앗</span>등급입니다.");
+             } else if (totalCount >= 4 && totalCount < 7) {
+                 $('#top-img').attr("src", "../static/img_2/leaf.png");
+                 $('#bottom-txt').append("레벨1, <span style=\"color: green; font-weight: bold\">새싹</span>등급입니다.");
+             } else if (totalCount >= 7 && totalCount < 9) {
+                 $('#top-img').attr("src", "../static/img_2/buds.png");
+                 $('#bottom-txt').append("레벨1, <span style=\"color: plum; font-weight: bold\">꽃망울</span>등급입니다.");
+             } else {
+                 $('#top-img').attr("src","../static/img_2/flower.png");
+                 $('#bottom-txt').append("레벨1, <span style=\"color: red; font-weight: bold\">꽃</span>등급입니다.");
+             }
 
             let filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
             if( navigator.platform) {
@@ -370,6 +387,28 @@
 </head>
 
 <body>
+    <div class="modal">
+        <div class="top-content">
+            <div class="left-text">
+                분리수거 테스트
+            </div>
+            <div class="level-frame">
+                <img src="../static/img_2/seed.png" class="level-img" id="top-img">
+            </div>
+        </div>
+        <div class="bottom-content">
+            <div class="text">
+                당신의 분리수거 레벨은?
+            </div>
+            <p id="bottom-txt">
+
+            </p>
+            <div class="close-btn">
+                <button data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid pt-4">
         <div class="wrap">
             <div class="row frame" id="frame-box">
