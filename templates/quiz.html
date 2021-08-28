@@ -347,6 +347,8 @@
                             /* 모바일에서 접속하셨습니다 */
                             $('#cate-br').html("<br />");
                             // alert("모바일");
+                        } else {
+                            $('#cate-br').html("&nbsp;");
                         }
                     }
                     $('#category').html(temp_cate);
@@ -476,7 +478,7 @@
         </div>
         <div class="item-desc">
             <h1>
-                <span id="number-of-quiz">첫</span> 번째 문제! &nbsp;<span id="cate-br"></span>
+                <span id="number-of-quiz">첫</span> 번째 문제!<span id="cate-br"></span>
                 <span class="category" id="category">음식물 쓰레기</span>
             </h1>
             <p id="quiz">
