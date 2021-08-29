@@ -26,11 +26,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/modal-style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 
     <style>
-
         * {
             font-family: 'Gaegu', cursive;
         }
@@ -43,7 +42,8 @@
         */
         @media (min-width: 481px) {
 
-            html, body {
+            html,
+            body {
                 width: 100%;
                 height: 100%;
             }
@@ -56,7 +56,7 @@
             .wrap {
                 width: 550px;
                 margin: auto;
-                padding-top:20px;
+                padding-top: 20px;
 
                 border: 3px solid orange;
                 border-radius: 12%;
@@ -92,15 +92,15 @@
                 text-align: center;
             }
 
-           hr {
-               /* background: url('http://i.stack.imgur.com/37Aip.png') no-repeat top center; */
-               background: url('../static/img_2/seed.png') no-repeat top center;
-               background-size: contain;
-               display: block;
-               height: 30px;
-               border: 0;
-               position: relative;
-           }
+            hr {
+                /* background: url('http://i.stack.imgur.com/37Aip.png') no-repeat top center; */
+                background: url('../static/img_2/seed.png') no-repeat top center;
+                background-size: contain;
+                display: block;
+                height: 30px;
+                border: 0;
+                position: relative;
+            }
 
             hr:before,
             hr:after {
@@ -129,8 +129,10 @@
             }
         }
 
-         @media (max-width: 480px) {
-             html, body {
+        @media (max-width: 480px) {
+
+            html,
+            body {
                 width: 100%;
                 height: 100%;
             }
@@ -165,7 +167,7 @@
                 text-align: center;
             }
 
-             .title {
+            .title {
                 margin: auto;
                 text-align: center;
             }
@@ -176,14 +178,14 @@
             }
 
             hr {
-               /* background: url('http://i.stack.imgur.com/37Aip.png') no-repeat top center; */
-               background: url('../static/img_2/seed.png') no-repeat top center;
-               background-size: contain;
-               display: block;
-               height: 30px;
-               border: 0;
-               position: relative;
-           }
+                /* background: url('http://i.stack.imgur.com/37Aip.png') no-repeat top center; */
+                background: url('../static/img_2/seed.png') no-repeat top center;
+                background-size: contain;
+                display: block;
+                height: 30px;
+                border: 0;
+                position: relative;
+            }
 
             hr:before,
             hr:after {
@@ -210,7 +212,7 @@
                 margin-left: 13px;
                 background-color: orange;
             }
-         }
+        }
     </style>
 
     <script>
@@ -291,98 +293,116 @@
             /* $('#exampleModalCenter').modal("show"); */
             $('.modal').modal("show");
 
-             if (totalCount <= 3) {
-                 $('#top-img').attr("src", "../static/img_2/seed.png");
-                 /* $('#bottom-txt').text("레벨1, 씨앗 등급입니다."); */
-                 $('#bottom-txt').append("레벨1, <span style=\"color: saddlebrown; font-weight: bold\">씨앗</span>등급입니다.");
-             } else if (totalCount >= 4 && totalCount < 7) {
-                 $('#top-img').attr("src", "../static/img_2/leaf.png");
-                 $('#bottom-txt').append("레벨2, <span style=\"color: green; font-weight: bold\">새싹</span>등급입니다.");
-             } else if (totalCount >= 7 && totalCount < 9) {
-                 $('#top-img').attr("src", "../static/img_2/buds.png");
-                 $('#bottom-txt').append("레벨3, <span style=\"color: plum; font-weight: bold\">꽃망울</span>등급입니다.");
-             } else {
-                 $('#top-img').attr("src","../static/img_2/flower.png");
-                 $('#bottom-txt').append("레벨4, <span style=\"color: red; font-weight: bold\">꽃</span>등급입니다.");
-             }
+            if (totalCount <= 3) {
+                $('#top-img').attr("src", "../static/img_2/seed.png");
+                /* $('#bottom-txt').text("레벨1, 씨앗 등급입니다."); */
+                $('#bottom-txt').append("레벨1, <span style=\"color: saddlebrown; font-weight: bold\">씨앗</span>등급입니다.");
+            } else if (totalCount >= 4 && totalCount < 7) {
+                $('#top-img').attr("src", "../static/img_2/leaf.png");
+                $('#bottom-txt').append("레벨2, <span style=\"color: green; font-weight: bold\">새싹</span>등급입니다.");
+            } else if (totalCount >= 7 && totalCount < 9) {
+                $('#top-img').attr("src", "../static/img_2/buds.png");
+                $('#bottom-txt').append("레벨3, <span style=\"color: plum; font-weight: bold\">꽃망울</span>등급입니다.");
+            } else {
+                $('#top-img').attr("src", "../static/img_2/flower.png");
+                $('#bottom-txt').append("레벨4, <span style=\"color: red; font-weight: bold\">꽃</span>등급입니다.");
+            }
 
             let filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
-            if( navigator.platform) {
-                 if( filter.indexOf(navigator.platform.toLowerCase())<0 ) {
-                     /* alert("모바일에서 접속하셨습니다"); */
-                     /* totalCount 결과에 따라 출력문구 변경 */
-                     /* hr 이미지 변경 */
-                     if (totalCount <= 3) {
-                         $('#frame-box').append('<img src="../static/img_2/1.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h2 id="h-txt">지구야 미안해 ㅠ ㅠ</h2>');
-                         $('#comment-box').append(comm_txt1);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/seed.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/seed.png) no-repeat top center"});
+            if (navigator.platform) {
+                if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+                    /* alert("모바일에서 접속하셨습니다"); */
+                    /* totalCount 결과에 따라 출력문구 변경 */
+                    /* hr 이미지 변경 */
+                    if (totalCount <= 3) {
+                        $('#frame-box').append('<img src="../static/img_2/1.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h2 id="h-txt">지구야 미안해 ㅠ ㅠ</h2>');
+                        $('#comment-box').append(comm_txt1);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/seed.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/seed.png) no-repeat top center" });
 
-                     } else if (totalCount >= 4 && totalCount < 7) {
-                         $('#frame-box').append('<img src="../static/img_2/2.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h2 id="h-txt">대충..이렇게 하면 되겠지..?</h2>');
-                         $('#comment-box').append(comm_txt2);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/leaf.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/leaf.png) no-repeat top center"});
-                     } else if (totalCount >= 7 && totalCount < 9) {
-                         $('#frame-box').append('<img src="../static/img_2/3.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h2 id="h-txt">마스터까지 단 한 발짝!</h2>');
-                         $('#comment-box').append(comm_txt3);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/buds.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/buds.png) no-repeat top center"});
-                     } else {
-                         $('#frame-box').append('<img src="../static/img_2/4.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h2 id="h-txt">당신은 분리수거 마스터!!</h2>');
-                         $('#comment-box').append(comm_txt4);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/flower.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/flower.png) no-repeat top center"});
-                     }
+                    } else if (totalCount >= 4 && totalCount < 7) {
+                        $('#frame-box').append('<img src="../static/img_2/2.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h2 id="h-txt">대충..이렇게 하면 되겠지..?</h2>');
+                        $('#comment-box').append(comm_txt2);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/leaf.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/leaf.png) no-repeat top center" });
+                    } else if (totalCount >= 7 && totalCount < 9) {
+                        $('#frame-box').append('<img src="../static/img_2/3.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h2 id="h-txt">마스터까지 단 한 발짝!</h2>');
+                        $('#comment-box').append(comm_txt3);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/buds.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/buds.png) no-repeat top center" });
+                    } else {
+                        $('#frame-box').append('<img src="../static/img_2/4.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h2 id="h-txt">당신은 분리수거 마스터!!</h2>');
+                        $('#comment-box').append(comm_txt4);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/flower.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/flower.png) no-repeat top center" });
+                    }
 
-                     $('#comm-txt').css("font-size", "13px");
-                 } else {
-                     /* alert("PC에서 접속하셨습니다"); */
-                     /* totalCount 결과에 따라 출력문구 변경 */
-                     /* hr 이미지 변경 */
-                     if (totalCount <= 3) {
-                         $('#frame-box').append('<img src="../static/img_2/1.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h1 id="h-txt">지구야 미안해 ㅠ ㅠ</h1>');
-                         $('#comment-box').append(comm_txt1);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/seed.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/seed.png) no-repeat top center"});
+                    $('#comm-txt').css("font-size", "13px");
+                } else {
+                    /* alert("PC에서 접속하셨습니다"); */
+                    /* totalCount 결과에 따라 출력문구 변경 */
+                    /* hr 이미지 변경 */
+                    if (totalCount <= 3) {
+                        $('#frame-box').append('<img src="../static/img_2/1.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h1 id="h-txt">지구야 미안해 ㅠ ㅠ</h1>');
+                        $('#comment-box').append(comm_txt1);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/seed.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/seed.png) no-repeat top center" });
 
-                     } else if (totalCount >= 4 && totalCount < 7) {
-                         $('#frame-box').append('<img src="../static/img_2/2.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h1 id="h-txt">대충..이렇게 하면 되겠지..?</h1>');
-                         $('#comment-box').append(comm_txt2);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/leaf.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/leaf.png) no-repeat top center"});
-                     } else if (totalCount >= 7 && totalCount < 9) {
-                         $('#frame-box').append('<img src="../static/img_2/3.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h1 id="h-txt">마스터까지 단 한 발짝!</h1>');
-                         $('#comment-box').append(comm_txt3);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/buds.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/buds.png) no-repeat top center"});
-                     } else {
-                         $('#frame-box').append('<img src="../static/img_2/4.png" class="status-img" alt="">');
-                         $('#title-txt').append('<h1 id="h-txt">당신은 분리수거 마스터!!</h1>');
-                         $('#comment-box').append(comm_txt4);
-                         $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
-                         $('#hr-img1').css({"background": "url(../static/img_2/flower.png) no-repeat top center"});
-                         $('#hr-img2').css({"background": "url(../static/img_2/flower.png) no-repeat top center"});
-                     }
+                    } else if (totalCount >= 4 && totalCount < 7) {
+                        $('#frame-box').append('<img src="../static/img_2/2.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h1 id="h-txt">대충..이렇게 하면 되겠지..?</h1>');
+                        $('#comment-box').append(comm_txt2);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/leaf.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/leaf.png) no-repeat top center" });
+                    } else if (totalCount >= 7 && totalCount < 9) {
+                        $('#frame-box').append('<img src="../static/img_2/3.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h1 id="h-txt">마스터까지 단 한 발짝!</h1>');
+                        $('#comment-box').append(comm_txt3);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/buds.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/buds.png) no-repeat top center" });
+                    } else {
+                        $('#frame-box').append('<img src="../static/img_2/4.png" class="status-img" alt="">');
+                        $('#title-txt').append('<h1 id="h-txt">당신은 분리수거 마스터!!</h1>');
+                        $('#comment-box').append(comm_txt4);
+                        $('#comm-txt').append('<hr class="style-four" id="hr-img2">');
+                        $('#hr-img1').css({ "background": "url(../static/img_2/flower.png) no-repeat top center" });
+                        $('#hr-img2').css({ "background": "url(../static/img_2/flower.png) no-repeat top center" });
+                    }
 
-                     /* txt 크기 수정 */
-                 }
+                    /* txt 크기 수정 */
+                }
             }
         });
+
+        /*
+        * @brief 버튼 클릭시 주소가 복사되게 하는 함수
+        * @params {string} val 복사할 주소값
+        * @return {}
+        * @author 김진회
+        * @date 21.08.29
+        * 출처: https://manition.tistory.com/8
+        */
+        function copyToClipboard(val) {
+            let t = document.createElement("textarea");
+            document.body.appendChild(t);
+            t.value = val;
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+            alert('퀴즈주소 복사 완료!');
+        }
     </script>
 </head>
 
@@ -426,10 +446,13 @@
                 </div>
             </div>
             <div class="row mb-2">
-                    <button type="button" class="btn btn-primary btn-lg mr-4" style="width: 25%; margin: auto;">공유하기</button>
-                    <button type="button" class="btn btn-primary btn-lg ml-4" style="width: 25%; margin: auto;">레벨업</button>
+                <button type="button" onclick="copyToClipboard('http://letyourlightshine.shop');"
+                    class="btn btn-primary btn-lg mr-4" style="width: 25%; margin: auto;">공유하기</button>
+                <button type="button" onclick="location.href = 'https://blisgo.com/ ';"
+                    class="btn btn-primary btn-lg ml-4" style="width: 25%; margin: auto;">레벨업</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>

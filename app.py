@@ -32,6 +32,7 @@ def quiz():
     elif request.method == 'POST':
         seq = request.form['seq']
         quiz = db.quiz.find_one({'no': seq}, {'_id': False})
+        #현재 문제의 정답률 계산하기
         answers = db.quizanswers.find({'quizno':seq}).count()
         corrects = db.quizanswers.find({'quizno':seq, 'correct':'1'}).count()
         rate = round(corrects / answers * 100, 2)
