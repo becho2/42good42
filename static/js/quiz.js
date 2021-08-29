@@ -96,7 +96,6 @@ function selectAnswer(selectedAnswer) {
         $('#btn-next').html("결과보러가기!");
     }
 
-
     //고른 답이 정답일 때(if)와 오답일 때(else)
     if (selectedAnswer === correctAnswer) {        
         //이 문제의 정답을 맞췄다고 서버-DB에 전송
