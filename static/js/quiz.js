@@ -157,7 +157,7 @@ function next() {
             url: "/savetotal",
             data: {
                 "device": device,
-                "countCorrect": countCorrrect
+                "countCorrect": countCorrect
             },
             success: function (response) {
                 // console.log(response.quiz);
