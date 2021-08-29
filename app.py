@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request, flash, session, redirect
 from pymongo import MongoClient
+import datetime
 
 app = Flask(__name__)
 
@@ -33,6 +34,40 @@ def quiz():
         seq = request.form['seq']
         quiz = db.quiz.find_one({'no': seq}, {'_id': False})
         return jsonify({'msg': '성공', 'quiz': quiz})
+
+# 문제별 정답률: 퀴즈 하나를 풀 때마다 그 시도에서 해당 문제의 정답을 맞혔는지 여부를 DB에 저장하기
+# author 김진회
+# date 21.08.29
+@app.route('/saveone', methods=['POST'])
+def saveone():
+    quizno = request.form['quizno']
+    device = request.form['device']
+    correct = request.form['correctOrNot']
+    now = datetime.datetime.now()
+    doc = {
+        "quizno": quizno,
+        "device": device,
+        "correct": correct,
+        "time": now,
+    }
+    db.quizanswers.insert_one(doc)
+    return jsonify({'msg': '등록 완료!'})
+
+# 평균 성적: 퀴즈를 완료했을 때 몇 개의 정답을 맞혔는지를 DB에 저장하기
+# author 김진회
+# date 21.08.29
+@app.route('/savetotal', methods=['POST'])
+def savetotal():
+    device = request.form['device']
+    corrects = request.form['countCorrect']
+    now = datetime.datetime.now()
+    doc = {
+        "device": device,
+        "corrects": corrects,
+        "time": now,
+    }
+    db.totalcorrects.insert_one(doc)
+    return jsonify({'msg': '등록 완료!'})
 
 
 ## 결과페이지 HTML 화면 보여주기
