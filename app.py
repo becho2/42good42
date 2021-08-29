@@ -12,7 +12,7 @@ conn = MongoClient()
 conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
-seq = 1
+seq = '1'
 answers = list(db.quizanswers.find({'quizno':seq}, {'_id': False}))
 print(answers)
 
