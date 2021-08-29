@@ -13,8 +13,10 @@ conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
 seq = '1'
-answers = list(db.quizanswers.find({'quizno':seq}, {'_id': False}))
+answers = db.quizanswers.find({'quizno':seq}).count()
 print(answers)
+corrects = db.quizanswers.find({'quizno':seq, 'correct':'1'}).count()
+print(corrects)
 
 ## 메인 HTML 화면 보여주기
 # @app.route('/')
