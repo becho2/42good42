@@ -65,14 +65,15 @@ function setQuiz(no = 1) {
         success: function (response) {
             // console.log(response.quiz);
             quiz = response.quiz['content']
-            category = response.quiz['category']
+            // category = response.quiz['category']
             correctAnswer = response.quiz['answer']
             description = response.quiz['description']
             quizno = response.quiz['no']
+            correctRate = response.rate['rate']
             temp_quiz = `${quiz}`
-            temp_cate = `${category}`
+            temp_rate = `정답률: ${correctRate}%`
             $('#quiz').html(temp_quiz);
-            $('#category').html(temp_cate);
+            $('#correct-rate').html(temp_rate);
             numberOfQuiz(quizno);
         }
     })
