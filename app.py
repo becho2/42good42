@@ -34,7 +34,7 @@ def quiz():
         quiz = db.quiz.find_one({'no': seq}, {'_id': False})
         answers = db.quizanswers.find({'quizno':seq}).count()
         corrects = db.quizanswers.find({'quizno':seq, 'correct':'1'}).count()
-        rate = round(answers / corrects * 100, 2)
+        rate = round(corrects / answers * 100, 2)
         return jsonify({'msg': '성공', 'quiz': quiz, 'rate': rate})
 
 # 문제별 정답률: 퀴즈 하나를 풀 때마다 그 시도에서 해당 문제의 정답을 맞혔는지 여부를 DB에 저장하기

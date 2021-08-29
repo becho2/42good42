@@ -63,14 +63,14 @@ function setQuiz(no = 1) {
             "seq": no,
         },
         success: function (response) {
-            console.log(response);
-            console.log(response.rate);
+            // console.log(response);
+            // console.log(response.rate);
             quiz = response.quiz['content']
             // category = response.quiz['category']
             correctAnswer = response.quiz['answer']
             description = response.quiz['description']
             quizno = response.quiz['no']
-            correctRate = response.rate['rate']
+            correctRate = response.rate
             temp_quiz = `${quiz}`
             temp_rate = `정답률: ${correctRate}%`
             $('#quiz').html(temp_quiz);
