@@ -12,12 +12,6 @@ conn = MongoClient()
 conn = MongoClient('mongodb://test:test@localhost', 27017)
 db = conn.good42
 
-seq = '1'
-answers = db.quizanswers.find({'quizno':seq}).count()
-print(answers)
-corrects = db.quizanswers.find({'quizno':seq, 'correct':'1'}).count()
-print(corrects)
-
 ## 메인 HTML 화면 보여주기
 # @app.route('/')
 # def index():
@@ -38,9 +32,10 @@ def quiz():
     elif request.method == 'POST':
         seq = request.form['seq']
         quiz = db.quiz.find_one({'no': seq}, {'_id': False})
-        answers = list(db.quizanswers.find({'no':seq}, {'_id': False}))
-        print(answers)
-        return jsonify({'msg': '성공', 'quiz': quiz})
+        answers = db.quizanswers.find({'quizno':seq}).count()
+        corrects = db.quizanswers.find({'quizno':seq, 'correct':'1'}).count()
+        rate = round(answers / corrects * 100, 2)
+        return jsonify({'msg': '성공', 'quiz': quiz, 'rate': rate})
 
 # 문제별 정답률: 퀴즈 하나를 풀 때마다 그 시도에서 해당 문제의 정답을 맞혔는지 여부를 DB에 저장하기
 # author 김진회
