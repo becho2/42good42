@@ -63,7 +63,8 @@ function setQuiz(no = 1) {
             "seq": no,
         },
         success: function (response) {
-            // console.log(response.quiz);
+            console.log(response);
+            console.log(response.rate);
             quiz = response.quiz['content']
             // category = response.quiz['category']
             correctAnswer = response.quiz['answer']
