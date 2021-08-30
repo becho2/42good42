@@ -216,6 +216,9 @@
     </style>
 
     <script>
+
+        let modalStatus = 0;
+
         let comm_txt1 = "<hr class= \"style-four\" id=\"hr-img1\">" +
             "<h5 style=\"text-align: center;\" id=\"comm-txt\">\n" +
             "                        <b>\n" +
@@ -417,13 +420,13 @@
             </div>
         </div>
         <div class="bottom-content">
-            <div class="text">
+            <div class="text" id="modal-title">
                 당신의 분리수거 레벨은?
             </div>
             <p id="bottom-txt">
 
             </p>
-            <div class="close-btn">
+            <div class="close-btn" id="modal-close">
                 <button data-dismiss="modal">닫기</button>
             </div>
         </div>
@@ -448,11 +451,38 @@
             <div class="row mb-2">
                 <button type="button" onclick="copyToClipboard('http://letyourlightshine.shop');"
                     class="btn btn-lg mr-4" style="width: 25%; margin: auto; background-color: orange; border: none; color: white">공유하기</button>
-                <button type="button" onclick="location.href = 'https://blisgo.com/ ';"
+                <button type="button" onclick="levelup()"
                     class="btn btn-lg ml-4" style="width: 25%; margin: auto; background-color: orange; border: none; color: white">레벨업</button>
             </div>
         </div>
     </div>
+    <script>
+        function levelup() {
+
+            modalStatus = 1;
+
+            $('.modal').modal("show");
+
+            $('#top-img').attr("src", "../static/img_2/recycle.png");
+            $('#modal-title').text("분리배출 더 알고싶나요?");
+            $('#bottom-txt').text("궁금증을 해결해 줄 페이지로"+ "\n" + "연결해드리겠습니다. ♡");
+            $('#bottom-txt').css("font-size", "14px");
+            /* $('#modal-close').text("이동"); */
+        }
+
+         $('.close-btn').click(function(){
+
+             console.log(modalStatus);
+
+             if (modalStatus == 1) {
+
+                 console.log("modalstatus = 1");
+
+                location.href = 'https://blisgo.com/ ';
+                modalStatus = 0;
+             }
+         });
+    </script>
 </body>
 
 </html>
