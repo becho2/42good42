@@ -19,6 +19,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script data-ad-client="ca-pub-8304338450321843" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <title>분리수거 OX퀴즈</title>
 
@@ -450,9 +452,10 @@
             </div>
             <div class="row mb-2">
                 <button type="button" onclick="copyToClipboard('http://letyourlightshine.shop');"
-                    class="btn btn-lg mr-4" style="width: 25%; margin: auto; background-color: orange; border: none; color: white">공유하기</button>
-                <button type="button" onclick="levelup()"
-                    class="btn btn-lg ml-4" style="width: 25%; margin: auto; background-color: orange; border: none; color: white">레벨업</button>
+                    class="btn btn-lg mr-4"
+                    style="width: 25%; margin: auto; background-color: orange; border: none; color: white">공유하기</button>
+                <button type="button" onclick="levelup()" class="btn btn-lg ml-4"
+                    style="width: 25%; margin: auto; background-color: orange; border: none; color: white">레벨업</button>
             </div>
         </div>
     </div>
@@ -465,24 +468,24 @@
 
             $('#top-img').attr("src", "../static/img_2/recycle.png");
             $('#modal-title').text("분리배출 더 알고싶나요?");
-            $('#bottom-txt').text("궁금증을 해결해 줄 페이지로"+ "\n" + "연결해드리겠습니다. ♡");
+            $('#bottom-txt').text("궁금증을 해결해 줄 페이지로" + "\n" + "연결해드리겠습니다. ♡");
             $('#bottom-txt').css("font-size", "14px");
             /* $('#modal-close').text("이동"); */
             $('#modal-close').html("<button data-dismiss=\"modal\">이동</button>");
         }
 
-         $('.close-btn').click(function(){
+        $('.close-btn').click(function () {
 
-             console.log(modalStatus);
+            console.log(modalStatus);
 
-             if (modalStatus == 1) {
+            if (modalStatus == 1) {
 
-                 console.log("modalstatus = 1");
+                console.log("modalstatus = 1");
 
                 location.href = 'https://blisgo.com/ ';
                 modalStatus = 0;
-             }
-         });
+            }
+        });
     </script>
 </body>
 
