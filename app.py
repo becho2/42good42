@@ -1,6 +1,9 @@
-from flask import Flask, render_template, jsonify, request, flash, session, redirect
+from flask import Flask, render_template, jsonify, request, flash, session, redirect, send_file
 from pymongo import MongoClient
 import datetime
+from werkzeug.utils import secure_filename
+import os
+from excel import sb_cha_ex_read
 
 app = Flask(__name__)
 
@@ -145,5 +148,39 @@ def logout():
     session.pop('logged_in',None)
     return redirect('/admin')
 
+
+
+
+# 업로드, 다운로드 HTML 렌더링
+@app.route('/saybebe_cha')
+def saybebe_up():
+	files = os.listdir("./downloadxls")
+	return render_template('filedown.html',files=files)
+
+
+@app.route('/fileUpload', methods = ['GET','POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save('./uploadxls/' + secure_filename(f.filename))
+        sb_cha_ex_read.saybebe_convert()
+        return '파일을 업로드 및 변환하는 중입니다'
+
+
+#파일 다운로드 처리
+@app.route('/fileDown', methods = ['GET', 'POST'])
+def down_file():
+	if request.method == 'POST':
+		sw=0
+		files = os.listdir("./downloadxls")
+		for x in files:
+			if(x==request.form['file']):
+				sw=1
+		path = "./downloadxls/"
+		return send_file(path + request.form['file'],
+				attachment_filename = request.form['file'],
+				as_attachment=True)
+
+
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=False)

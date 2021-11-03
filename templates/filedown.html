@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/fileUpload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" />
+    </form>
+
+    <hr width="100%" color="black" />
+    <center>
+        <h3>File List</h3>
+    </center>
+    <hr width="100%" color="black" />
+    <form action="/fileDown" method="POST" enctype="multipart/form-data">
+        {% for n in files %}
+        <input type="text" name="file" value={{n}} />
+        <input type="submit" value="다운로드" />
+        <ul>
+            <li>{{n}}</li>
+        </ul>
+        {% endfor %}
+    </form>
+</body>
+
+</html>
