@@ -5,29 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>chacha</title>
 </head>
 
 <body>
-    <form action="/fileUpload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <input type="submit" />
-    </form>
+    {%if files%}
+    <div style="text-align: center;">
+        <hr width="100%" color="black" />
+        <h3>세이베베 엑셀파일 업로드하세요(제출을 누르면 자동으로 새로고침되고 아래 파일명이 현재시각으로 바뀝니다.)</h3>
+        <hr width="100%" color="black" />
 
-    <hr width="100%" color="black" />
-    <center>
-        <h3>File List</h3>
-    </center>
-    <hr width="100%" color="black" />
-    <form action="/fileDown" method="POST" enctype="multipart/form-data">
-        {% for n in files %}
-        <input type="text" name="file" value={{n}} />
-        <input type="submit" value="다운로드" />
+        <form action="/fileUpload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <input type="submit" />
+        </form>
+
+        <hr width="100%" color="black" />
+        <h3>업로드하셨으면 아래에서 다운 받으세요</h3>
+        <hr width="100%" color="black" />
+        <form action="/fileDown" method="POST" enctype="multipart/form-data">
+            {% for n in files %}
+            {{n}}
+            <br /><input type="text" name="file" value={{n}} />
+            <input type="submit" value="다운로드" />
+            {% endfor %}
+        </form>
+        <hr width="100%" color="black" />
+        <p>
+            보안상 위험이 있으니, URL주소를 절대 외부에 노출하지 마세요!<br />
+            고객개인정보가 담긴 파일이 유출될 수 있습니다.
+        </p>
+
+    </div>
+
+    {%else%}
+    <form method="post" action="/saybebe_cha">
         <ul>
-            <li>{{n}}</li>
+            <li><input type="password" placeholder="비밀번호" name="userPW"></li>
+            <button type="submit" class="btn_login">로그인</button>
         </ul>
-        {% endfor %}
     </form>
+    {%endif%}
 </body>
 
 </html>

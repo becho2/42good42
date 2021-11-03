@@ -152,10 +152,18 @@ def logout():
 
 
 # 업로드, 다운로드 HTML 렌더링
-@app.route('/saybebe_cha')
+@app.route('/saybebe_cha', methods=['GET', 'POST'])
 def saybebe_up():
-	files = os.listdir("./downloadxls")
-	return render_template('filedown.html',files=files)
+    password = 'epdlffl488'
+    if request.method == 'GET':
+        return render_template('filedown.html')
+    elif request.method == 'POST':
+        pw = request.form.get("userPW", type=str)
+        if pw == password:
+            session["logged_in"] = "OK"
+            files = os.listdir("./downloadxls")
+            return render_template('filedown.html',files=files)
+
 
 
 @app.route('/fileUpload', methods = ['GET','POST'])
@@ -183,4 +191,4 @@ def down_file():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=False)

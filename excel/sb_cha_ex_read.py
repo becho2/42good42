@@ -14,7 +14,7 @@ def saybebe_convert():
 
     # 현재날짜 가져오기
     dt_now = datetime.now()
-    today = dt_now.date().strftime("%Y%m%d")
+    today = dt_now.strftime("%Y%m%d_%H%M%S")
 
     df = pd.DataFrame()
     # 업로드폴더에 존재하는 모든 엑셀파일 읽기 (근데 할 때마다 삭제해서 결국 파일 하나만 존재하게 할 것)
@@ -32,28 +32,31 @@ def saybebe_convert():
 
     # 엑셀에서 읽어서 생성한 데이터프레임을 한 행씩 가져와서 옵션의 긴 문자열을 [** 라는 구분자를 이용해서 자르고 리스트에서 하나씩 꺼내어 별도 행으로 추가한 뒤 원래 행을 삭제
     for i in range(end):
-        # print(i)
-        options = df.loc[i,'옵션'].split('[**')
-        options.pop(0)
-        # print(options)
-        
-        # 가격정보를 첫번째 복사될 때만 원래 값으로 넣고, 나머지는 0으로 넣기 위해 변수 설정
+
+        # 코드명 앞뒤로 * 로 구분하므로 *를 구분자로 옵션 문자열을 잘라 리스트에 저장
+        options = df.loc[i,'옵션'].split('*')
+        # options.pop(0)
+
+        # print(options)        
+        # 가격정보를 첫번째 복사될 때만 원래 값으로 넣고, 나머지는 0으로 넣기 위함 + 옵션명이 아닌 옵션코드가 들어가있는 홀수순서의 데이터만 넣기 위한 변수 설정
         sq = 0
         for option in options:
-            if sq == 0:
+            if sq == 1:
                 price = df.loc[i,"결제가격"]
             else:
                 price = 0
 
-            new_data = {
-            "번호": df.loc[i,"번호"], "일련번호": df.loc[i,"일련번호"], "주문번호": df.loc[i,"주문번호"], "주문자명":df.loc[i,"주문자명"],
-            "받는분이름":df.loc[i,"받는분이름"],"받는분전화번호":df.loc[i,"받는분전화번호"],"받는분핸드폰":df.loc[i,"받는분핸드폰"],
-            "우편번호":df.loc[i,"우편번호"],"(구)지번주소":df.loc[i,"(구)지번주소"],"(신)도로명주소":df.loc[i,"(신)도로명주소"],"주문일자":df.loc[i,"주문일자"],
-            "상품번호":df.loc[i,"상품번호"],"상품명":df.loc[i,"상품명"],"옵션":option,"수량":df.loc[i,"수량"],"배송메세지":df.loc[i,"배송메세지"],
-            "결제가격":price,"배송코드":df.loc[i,"배송코드"],"송장번호":df.loc[i,"송장번호"]
-            }
+            if sq%2 == 1:
+                new_data = {
+                "번호": df.loc[i,"번호"], "일련번호": df.loc[i,"일련번호"], "주문번호": df.loc[i,"주문번호"], "주문자명":df.loc[i,"주문자명"],
+                "받는분이름":df.loc[i,"받는분이름"],"받는분전화번호":df.loc[i,"받는분전화번호"],"받는분핸드폰":df.loc[i,"받는분핸드폰"],
+                "우편번호":df.loc[i,"우편번호"],"(구)지번주소":df.loc[i,"(구)지번주소"],"(신)도로명주소":df.loc[i,"(신)도로명주소"],"주문일자":df.loc[i,"주문일자"],
+                "상품번호":df.loc[i,"상품번호"],"상품명":df.loc[i,"상품명"],"옵션":option,"수량":df.loc[i,"수량"],"배송메세지":df.loc[i,"배송메세지"],
+                "결제가격":price,"배송코드":df.loc[i,"배송코드"],"송장번호":df.loc[i,"송장번호"]
+                }             
+                df_res = df_res.append(new_data, ignore_index=True)
+
             sq = sq + 1
-            df_res = df_res.append(new_data, ignore_index=True)
             
     ### 옵션별로 분리하여 전부 행추가해주었으니 기존 데이터들은 삭제
     df_res = df_res.drop(df_res.index[0:end])
