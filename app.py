@@ -164,7 +164,7 @@ def upload_file():
         f = request.files['file']
         f.save('./uploadxls/' + secure_filename(f.filename))
         sb_cha_ex_read.saybebe_convert()
-        return '파일을 업로드 및 변환하는 중입니다'
+        return redirect('/saybebe_cha')
 
 
 #파일 다운로드 처리
@@ -183,4 +183,4 @@ def down_file():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=False)
+    app.run('0.0.0.0', port=5000, debug=True)

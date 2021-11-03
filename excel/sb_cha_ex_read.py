@@ -19,7 +19,7 @@ def saybebe_convert():
     df = pd.DataFrame()
     # 업로드폴더에 존재하는 모든 엑셀파일 읽기 (근데 할 때마다 삭제해서 결국 파일 하나만 존재하게 할 것)
     for f in glob.glob("./uploadxls/*.xlsx"):
-        df = pd.read_excel(f,sheet_name=0)
+        df = pd.read_excel(f,sheet_name=0,engine='openpyxl')
     # df = pd.concat(df, ignore_index=True)
     # df.loc[''] = [3,3289764, 123423535, "차민지", "차민지", "070-7730-4265","010-2214-0554","주소주소1","도로명주소","[옵션1:[서울우유] 서울피자관 토마토치즈 수제 화덕피자 380g 1개]",1,0,0,0,0,0,0,0,0]
 
