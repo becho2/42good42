@@ -31,20 +31,20 @@ $(document).ready(function () {
  * @author 김진회
  * @date 21.08.28
  */
-function setHtmlByDevice() {
-    //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
-    if (navigator.platform) {
-        if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-            /* 모바일에서 접속한 경우 */
-            $('#cate-br').html("<br />");
-            device = 'mobile';
-        } else {
-            /* PC에서 접속한 경우 */
-            $('#cate-br').html("&nbsp;");
-            device = 'pc';
-        }
-    }
-}
+// function setHtmlByDevice() {
+//     //모바일에서 접속했을 경우 <br/>을 추가해 카테고리 를 아래로 내리기
+//     if (navigator.platform) {
+//         if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+//             /* 모바일에서 접속한 경우 */
+//             $('#cate-br').html("<br />");
+//             device = 'mobile';
+//         } else {
+//             /* PC에서 접속한 경우 */
+//             $('#cate-br').html("&nbsp;");
+//             device = 'pc';
+//         }
+//     }
+// }
 
 
 /**
